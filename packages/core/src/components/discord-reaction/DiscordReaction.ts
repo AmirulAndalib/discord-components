@@ -1,12 +1,17 @@
 import { consume } from '@lit/context';
 import { css, html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { messagesLightTheme } from '../discord-messages/DiscordMessages.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
+import { when } from 'lit/directives/when.js';
 import type { LightTheme } from '../../types.js';
+import { messagesLightTheme } from '../discord-messages/DiscordMessages.js';
 
 @customElement('discord-reaction')
 export class DiscordReaction extends LitElement implements LightTheme {
-	public static override styles = css`
+	/**
+	 * @internal
+	 */
+	public static override readonly styles = css`
 		:host > *:first-child {
 			border-radius: 0.5rem;
 			cursor: pointer;
@@ -88,31 +93,35 @@ export class DiscordReaction extends LitElement implements LightTheme {
 
 	/**
 	 * The name of the emoji to use as alternative image text.
-	 * @default ':emoji'
+	 *
+	 * @defaultValue ':emoji'
 	 */
 	@property()
 	public accessor name = ':emoji:';
 
 	/**
 	 * The number of people who reacted.
-	 * @default 1
+	 *
+	 * @defaultValue 1
 	 */
 	@property({ type: Number })
 	public accessor count = 1;
 
 	/**
 	 * Whether the reaction should show as reacted by the user.
-	 * @default false
+	 *
+	 * @defaultValue false
 	 */
 	@property({ type: Boolean, reflect: true })
 	public accessor reacted = false;
 
 	/**
 	 * Whether the reaction should be reactive.
-	 * @remark When the reaction is interactive left clicking it will add 1 to the counter.
+	 *
+	 * @remarks When the reaction is interactive left clicking it will add 1 to the counter.
 	 * Whereas when holding the Shift key and left clicking it will decrease the counter.
 	 * The counter cannot go below 1.
-	 * @default false
+	 * @defaultValue false
 	 */
 	@property({ type: Boolean })
 	public accessor interactive = false;
@@ -123,12 +132,16 @@ export class DiscordReaction extends LitElement implements LightTheme {
 
 	protected override render() {
 		return html`<div class="discord-reaction-inner" @click=${this.handleReactionClick} @keydown=${this.handleReactionClick}>
-			<img src="${this.emoji}" alt="${this.name}" draggable="false" />
+			${when(
+				this.emoji.includes('http') || this.emoji.startsWith('/') || this.emoji.startsWith('./'),
+				() => html`<img src=${ifDefined(this.emoji)} alt=${ifDefined(this.name)} draggable="false" />`,
+				() => html`<span>${this.emoji}</span>`
+			)}
 			<span class="discord-reaction-count">${this.count}</span>
 		</div>`;
 	}
 
-	private handleReactionClick = (event: MouseEvent) => {
+	private readonly handleReactionClick = (event: MouseEvent) => {
 		if (this.interactive) {
 			if (event.shiftKey) {
 				this.count--;

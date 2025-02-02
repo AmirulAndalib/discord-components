@@ -3,6 +3,281 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-alpha.38](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.37...v4.0.0-alpha.38) (2025-01-04)
+
+### Features
+
+* added option to add the channel name above discord messages ([#520](https://github.com/skyra-project/discord-components/issues/520)) ([716f72e](https://github.com/skyra-project/discord-components/commit/716f72edf0b57269b1b30b2d42b226c7e7385cd2)) (@TheBv)
+
+# [4.0.0-alpha.37](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.36...v4.0.0-alpha.37) (2024-12-01)
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies ([#505](https://github.com/skyra-project/discord-components/issues/505)) ([00e646f](https://github.com/skyra-project/discord-components/commit/00e646f61c00ce1a12d872d49c5c92e1a9695bb3)) (@renovate[bot])
+* **deps:** update all non-major dependencies ([#510](https://github.com/skyra-project/discord-components/issues/510)) ([f499bb7](https://github.com/skyra-project/discord-components/commit/f499bb714060012c9d7786c089413dc340417fd2)) (@renovate[bot])
+* inline field bug in Discord embed ([#511](https://github.com/skyra-project/discord-components/issues/511)) ([5b40150](https://github.com/skyra-project/discord-components/commit/5b40150c6f29760cc16ef6ab755f81598d512c99)), closes [#509](https://github.com/skyra-project/discord-components/issues/509) (@favna)
+* style discord attachment audio ([#504](https://github.com/skyra-project/discord-components/issues/504)) ([e5296e4](https://github.com/skyra-project/discord-components/commit/e5296e4499a9672ee12158a087e76b8c82a211d4)) (@eumarciel404)
+
+# [4.0.0-alpha.36](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.35...v4.0.0-alpha.36) (2024-11-02)
+
+### Bug Fixes
+
+* **attachment:** adding button download ([#499](https://github.com/skyra-project/discord-components/issues/499)) ([056368b](https://github.com/skyra-project/discord-components/commit/056368bdaf47f13d18bcca8c7897f257855f7bb9)) (@eumarciel404)
+* **discordcommand:** fixed boolean types and add ifDefined ([4352655](https://github.com/skyra-project/discord-components/commit/4352655b0879de6b43479494f8097c1cf5848212)) (@favna)
+* **DiscordReply:** add missing attributes ([38ee6e8](https://github.com/skyra-project/discord-components/commit/38ee6e86b4c0c43c8d17970176d7a5a396e65e66)), closes [#500](https://github.com/skyra-project/discord-components/issues/500) (@favna)
+* **embed-image:** fix max-width and max-height ([#498](https://github.com/skyra-project/discord-components/issues/498)) ([c7f3584](https://github.com/skyra-project/discord-components/commit/c7f35848424c38c2600d16fb9ac15cf2e7a34508)) (@eumarciel404)
+* style message ([#496](https://github.com/skyra-project/discord-components/issues/496)) ([c796dbc](https://github.com/skyra-project/discord-components/commit/c796dbc4a064a2d2e22adb70f60c97aa31436fdb)) (@eumarciel404)
+
+### Features
+
+* add polls ([#492](https://github.com/skyra-project/discord-components/issues/492)) ([61a1105](https://github.com/skyra-project/discord-components/commit/61a11055d8eb70795939d29299436af0c07c9f78)) (@eumarciel404)
+* adding the possibility to use emoji default of system ([#497](https://github.com/skyra-project/discord-components/issues/497)) ([1b206b1](https://github.com/skyra-project/discord-components/commit/1b206b19cc7f46dc0e7257ba1d4ba14477554e37)) (@eumarciel404)
+
+# [4.0.0-alpha.35](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.34...v4.0.0-alpha.35) (2024-10-27)
+
+### Bug Fixes
+
+* **audio-attachment:** add optional chaining for `this.name.replaceAll` ([aece350](https://github.com/skyra-project/discord-components/commit/aece3504ba41600af37db0a9f4a90e304efaaf26)) (@favna)
+* **command:** updating style ([#468](https://github.com/skyra-project/discord-components/issues/468)) ([d41e346](https://github.com/skyra-project/discord-components/commit/d41e3469eaa7618a72dbf630d4461aa4d76c239f)) (@eumarciel404)
+* correcting context-user-name-color ([#489](https://github.com/skyra-project/discord-components/issues/489)) ([55531f9](https://github.com/skyra-project/discord-components/commit/55531f9e0de290e77e45661e97c2bbb7c4d96028)) (@eumarciel404)
+* **deps:** update all non-major dependencies ([bd0d80b](https://github.com/skyra-project/discord-components/commit/bd0d80b1a2fa66c7252871eeabfb134d742ab4f1)) (@renovate[bot])
+* **discord-string-select-menu-option:** Correcting style ([#484](https://github.com/skyra-project/discord-components/issues/484)) ([3750abf](https://github.com/skyra-project/discord-components/commit/3750abf1c5d06e253637216850ffcc904c55da29)) (@eumarciel404)
+* **string-select-menu:** fixing clickable area ([#488](https://github.com/skyra-project/discord-components/issues/488)) ([9f60afc](https://github.com/skyra-project/discord-components/commit/9f60afc26c39844f9ad9340b8df9a55ed9cac389)) (@eumarciel404)
+* **string-select:** set correct slot height ([#467](https://github.com/skyra-project/discord-components/issues/467)) ([303ca37](https://github.com/skyra-project/discord-components/commit/303ca374505f4096cbea3f4f9475d8e3d89d44bf)) (@Marciel404)
+
+### Features
+
+* add context_menu command ([#485](https://github.com/skyra-project/discord-components/issues/485)) ([1f853cc](https://github.com/skyra-project/discord-components/commit/1f853cce30f7a6f6237fc8b2672339ac0ca9b2ec)) (@eumarciel404)
+* add official app ([#493](https://github.com/skyra-project/discord-components/issues/493)) ([c6baff1](https://github.com/skyra-project/discord-components/commit/c6baff164b2aba224fa98434459113b4378e6643)) (@eumarciel404)
+
+# [4.0.0-alpha.34](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.33...v4.0.0-alpha.34) (2024-08-29)
+
+**Note:** Version bump only for package @skyra/discord-components-core
+
+# [4.0.0-alpha.33](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.32...v4.0.0-alpha.33) (2024-08-24)
+
+### Bug Fixes
+
+* fixed clan tags not showing up properly ([de183c0](https://github.com/skyra-project/discord-components/commit/de183c0523947c38dfbcea8a8aaa911849a22d77)) (@favna)
+
+# [4.0.0-alpha.32](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.31...v4.0.0-alpha.32) (2024-08-24)
+
+### Bug Fixes
+
+* correct the line style that indicates the thread ([#457](https://github.com/skyra-project/discord-components/issues/457)) ([5fe063a](https://github.com/skyra-project/discord-components/commit/5fe063aa50b560b21d6a9beb0805b827c6874057)) (@eumarciel404)
+* fixed borders in :before and :after for tailwindcss users ([#454](https://github.com/skyra-project/discord-components/issues/454)) ([f857ec4](https://github.com/skyra-project/discord-components/commit/f857ec425a3f55ffea22ec66c7b50bfb70945d23)) (@favna)
+* prevent timestamp wrapping ([#462](https://github.com/skyra-project/discord-components/issues/462)) ([7ce20a7](https://github.com/skyra-project/discord-components/commit/7ce20a75312aae6b85b825caaeea120358cdd7b5)) (@dpaulos6)
+* remove border on modal input ([#455](https://github.com/skyra-project/discord-components/issues/455)) ([900afa4](https://github.com/skyra-project/discord-components/commit/900afa4f126f8cdd237e02d84d0d3f9bbf4c5765)) (@mezotv)
+* update the ephemeral eye icon ([#460](https://github.com/skyra-project/discord-components/issues/460)) ([62b1294](https://github.com/skyra-project/discord-components/commit/62b1294fa09d46b0e0db831fc6aae82543dfc695)) (@mezotv)
+
+### Features
+
+* add clan tags ([#463](https://github.com/skyra-project/discord-components/issues/463)) ([afe7ee9](https://github.com/skyra-project/discord-components/commit/afe7ee9e66cb4e68fad22ffe866a27a9ff884d4f)), closes [#453](https://github.com/skyra-project/discord-components/issues/453) (@favna)
+* adding function if you click an option ([#461](https://github.com/skyra-project/discord-components/issues/461)) ([930a691](https://github.com/skyra-project/discord-components/commit/930a691eae60db82ea5fbd25abd7d51b439e3d50)) (@eumarciel404)
+
+# [4.0.0-alpha.31](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.30...v4.0.0-alpha.31) (2024-08-19)
+
+### Bug Fixes
+
+* remove accidental console log ([fc047a6](https://github.com/skyra-project/discord-components/commit/fc047a6b5707a29ae2de8c413120ff2f49032eb7)) (@favna)
+
+### Features
+
+* **system-message:** add upgrade type ([#450](https://github.com/skyra-project/discord-components/issues/450)) ([39b5ad0](https://github.com/skyra-project/discord-components/commit/39b5ad094c8866a27688d9a5d637d3bbf88748c3)) (@mezotv)
+
+# [4.0.0-alpha.30](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.29...v4.0.0-alpha.30) (2024-08-19)
+
+### Features
+
+* add modals ([#443](https://github.com/skyra-project/discord-components/issues/443)) ([ea87670](https://github.com/skyra-project/discord-components/commit/ea87670fc98601ca68127714c77a4e20b38d5f15)) (@eumarciel404)
+* **emoji:** add support for `jumbo` size emojis ([95b2b19](https://github.com/skyra-project/discord-components/commit/95b2b19699d05414caad2b5f411249c3fe5f4fd4)) (@favna)
+
+# [4.0.0-alpha.29](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.28...v4.0.0-alpha.29) (2024-08-10)
+
+### Bug Fixes
+
+* bold and italic in list items proper indenting ([#445](https://github.com/skyra-project/discord-components/issues/445)) ([629bbea](https://github.com/skyra-project/discord-components/commit/629bbea0b8b416e9f3366623adeb616905e50fb9)), closes [#444](https://github.com/skyra-project/discord-components/issues/444) (@favna)
+
+# [4.0.0-alpha.28](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.27...v4.0.0-alpha.28) (2024-08-07)
+
+**Note:** Version bump only for package @skyra/discord-components-core
+
+# [4.0.0-alpha.27](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.26...v4.0.0-alpha.27) (2024-08-07)
+
+### Bug Fixes
+
+* Adding Light Theme in string select menu and correcting the text size ([#439](https://github.com/skyra-project/discord-components/issues/439)) ([c40f6c0](https://github.com/skyra-project/discord-components/commit/c40f6c0efe5e2efa51fc3129c2dffb57592b7098)) (@eumarciel404)
+* **discord-action-row:** wrap using "flex-wrap" ([#440](https://github.com/skyra-project/discord-components/issues/440)) ([24163fc](https://github.com/skyra-project/discord-components/commit/24163fce52d7932d8f428ecc56976127af675760)) (@eumarciel404)
+* **discord-invite:** improve styling ([#441](https://github.com/skyra-project/discord-components/issues/441)) ([9b910d1](https://github.com/skyra-project/discord-components/commit/9b910d107ef623c31f28de0be04b80046fd4bbf5)) (@eumarciel404)
+
+# [4.0.0-alpha.26](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.25...v4.0.0-alpha.26) (2024-08-03)
+
+### Bug Fixes
+
+* fixes order of message slots ([827ef64](https://github.com/skyra-project/discord-components/commit/827ef6409f3d0c34d1a51eb78b319f8eeb994c8d)), closes [#435](https://github.com/skyra-project/discord-components/issues/435) (@favna)
+
+# [4.0.0-alpha.25](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.24...v4.0.0-alpha.25) (2024-08-03)
+
+### Bug Fixes
+
+* **discord-reply:** Removed rouge closing curly brace ([#437](https://github.com/skyra-project/discord-components/issues/437)) ([e88e963](https://github.com/skyra-project/discord-components/commit/e88e9637b40b2a32d781d6aafba4ac5230df6ffa)) (@DanPlayz0)
+
+### Features
+
+* add string select menu ([#436](https://github.com/skyra-project/discord-components/issues/436)) ([9f3744a](https://github.com/skyra-project/discord-components/commit/9f3744a9505653470fc3efd47d37b791944baebc)), closes [#185](https://github.com/skyra-project/discord-components/issues/185) (@eumarciel404)
+
+# [4.0.0-alpha.24](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.23...v4.0.0-alpha.24) (2024-07-31)
+
+### Bug Fixes
+
+* add skiping one line ([#427](https://github.com/skyra-project/discord-components/issues/427)) ([0de39d7](https://github.com/skyra-project/discord-components/commit/0de39d7437e088f8c227359ec2a0c102cb9ef4bd)) (@eumarciel404)
+* added the possibility of skipping lines for discord-embed titles ([#426](https://github.com/skyra-project/discord-components/issues/426)) ([bc62ed5](https://github.com/skyra-project/discord-components/commit/bc62ed58b21b06270aff7c633f461bb01103c94b)) (@favna)
+* added the possibility of skipping lines for discord-embed-field titles ([#428](https://github.com/skyra-project/discord-components/issues/428)) ([67b0ab9](https://github.com/skyra-project/discord-components/commit/67b0ab9229307c6423b91c7b8f28479d36aba0ba)) (@eumarciel404)
+* **discord-button:** fixed button type checking to be null safe ([7d99d99](https://github.com/skyra-project/discord-components/commit/7d99d99cb6ff9f3d2ad060b49305da4049958e19)) (@favna)
+* **discord-embed-field:** fixed inline-index checking to be null safe ([84e5bc4](https://github.com/skyra-project/discord-components/commit/84e5bc46305abb880fd6243c028c8dfa23295390)) (@favna)
+
+### Features
+
+* add `dismissMessageClicked` to `discord-message` ([c7f6b51](https://github.com/skyra-project/discord-components/commit/c7f6b51dc5d3079ae9e9e31417cdb8068b6e9d60)) (@favna)
+
+# [4.0.0-alpha.23](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.22...v4.0.0-alpha.23) (2024-07-18)
+
+### Bug Fixes
+
+* **button:** ensure disabled buttons have proper cursor ([5f28110](https://github.com/skyra-project/discord-components/commit/5f28110a2ac8e3549b73021add7dc97675fc7252)) (@favna)
+* **message:** fixed misaligned author info ([8480702](https://github.com/skyra-project/discord-components/commit/848070259daecc8072f1e8ebbb2f4f4f8fcbf92e)) (@favna)
+
+# [4.0.0-alpha.22](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.21...v4.0.0-alpha.22) (2024-07-13)
+
+### Bug Fixes
+
+* **regression:** ensure compact-mode and message-body-only work well together ([f7ac627](https://github.com/skyra-project/discord-components/commit/f7ac6272eda324ca7fb4d8a1bc2211eaa0401a5a)) (@favna)
+
+### Features
+
+* add on-hover timestamps for message-body-only messages ([db9df40](https://github.com/skyra-project/discord-components/commit/db9df40cc2c0ecf519521861abac171cd93183dc)), closes [#418](https://github.com/skyra-project/discord-components/issues/418) (@favna)
+
+# [4.0.0-alpha.21](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.20...v4.0.0-alpha.21) (2024-07-12)
+
+### Bug Fixes
+
+* **embed-description:** remove `white-space: pre-line` to make sure text stays on the same line ([1e9ea73](https://github.com/skyra-project/discord-components/commit/1e9ea73c1ce293d5952fc44b9780354e7797e187)) (@favna)
+* **embed:** resolve the remaining todo, lit covers this functionality automatically yay ([12ed6b4](https://github.com/skyra-project/discord-components/commit/12ed6b4150672fb8195e94f5df129007c72bff8c)) (@favna)
+* **file-attachment:** add attribute for bytesUnit ([c23f7d1](https://github.com/skyra-project/discord-components/commit/c23f7d1edeb6f7fd35d2c33e8e280a8cbe9f2b0c)) (@favna)
+* **media:** add missing ARIA roles ([75a57db](https://github.com/skyra-project/discord-components/commit/75a57db29af32acfbb79ed5b6ed90c6b76a0493f)) (@favna)
+* **tenor-video:** properly match discord gifs and restore autoplay on chromium browsers ([558b851](https://github.com/skyra-project/discord-components/commit/558b851b240613b334dd3186f7fc08cc6ca52533)) (@favna)
+
+### Features
+
+* add `discord-subscript` component ([e1b7db6](https://github.com/skyra-project/discord-components/commit/e1b7db6146685a82437018d815b868b5b59eeac3)) (@favna)
+* add audio attachment component ([#411](https://github.com/skyra-project/discord-components/issues/411)) ([d970765](https://github.com/skyra-project/discord-components/commit/d970765b4929c8836c3af191f435b474794ad593)) (@favna)
+* add video attachment component ([#413](https://github.com/skyra-project/discord-components/issues/413)) ([b308580](https://github.com/skyra-project/discord-components/commit/b3085802bc7407403bdec707266ea2a239eacfbc)) (@favna)
+* **media:** add restart icon and functionality ([584a438](https://github.com/skyra-project/discord-components/commit/584a4383ac5a44a639a09e28bbd34cb1503d80ba)) (@favna)
+
+# [4.0.0-alpha.20](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.19...v4.0.0-alpha.20) (2024-06-15)
+
+### Bug Fixes
+
+* **image-attachment:** fixed incorrect properties and add ifDefined directive ([c2ba255](https://github.com/skyra-project/discord-components/commit/c2ba255efda74065c754976a09973744d789facf)) (@favna)
+* use slot for custom image element ([e373c3a](https://github.com/skyra-project/discord-components/commit/e373c3ac438457055f6abaccb98c4bab82c220fd)) (@favna)
+
+### Features
+
+* add file attachment support ([9e4bebd](https://github.com/skyra-project/discord-components/commit/9e4bebd50078ca2b0cc2a1fb1d6c6ae99da4065d)), closes [#258](https://github.com/skyra-project/discord-components/issues/258) (@favna)
+* add support for custom image attachments ([dc95f8b](https://github.com/skyra-project/discord-components/commit/dc95f8b2c5726665d9d26180eb83dd89dedc5c88)), closes [#251](https://github.com/skyra-project/discord-components/issues/251) (@favna)
+
+# [4.0.0-alpha.19](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.18...v4.0.0-alpha.19) (2024-06-15)
+
+### Features
+
+* **discord-message:** add `message-body-only` to allow for chained messages from same author ([0381bee](https://github.com/skyra-project/discord-components/commit/0381bee2dfa5b83fb8f9dc7e9c30423defe0bd2c)), closes [#407](https://github.com/skyra-project/discord-components/issues/407) (@favna)
+
+# [4.0.0-alpha.18](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.17...v4.0.0-alpha.18) (2024-04-20)
+
+### Bug Fixes
+
+* change `bot` to `app` following Discord's change of the label ([#394](https://github.com/skyra-project/discord-components/issues/394)) ([ec034d3](https://github.com/skyra-project/discord-components/commit/ec034d3992977a62a2f85865c1e74a4e0dfcd512))
+* **deps:** update all non-major dependencies ([77d3451](https://github.com/skyra-project/discord-components/commit/77d345176e30975c4ebed170f8367185e15797a1))
+* fixed custom emojis mapping support for Nuxt 3 ([f11c074](https://github.com/skyra-project/discord-components/commit/f11c074adec983b6bc12ea7e81f5da44accc9c8d))
+* fixed emojis in embeds and add support for Nuxt 3 ([7965fd3](https://github.com/skyra-project/discord-components/commit/7965fd3c6e7397b4fae4b4e3fe4666823160f1e9))
+
+# [4.0.0-alpha.17](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.16...v4.0.0-alpha.17) (2024-02-18)
+
+### Bug Fixes
+
+* add list-style-image initial to discord-unordered-list ([0c9cd70](https://github.com/skyra-project/discord-components/commit/0c9cd7048fd9891dc9057b719bdd4fa6dfca5877))
+
+### Features
+
+* add `DiscordComponentsError` to signify errors ([b072bea](https://github.com/skyra-project/discord-components/commit/b072beabe04895b7a778724d94b60c7adce7de74))
+* add discord-ordered-list ([42f8b49](https://github.com/skyra-project/discord-components/commit/42f8b4901a969a5c988db43974ffa0766a175577))
+* add discord-unordered-list and discord-list-item ([71d483d](https://github.com/skyra-project/discord-components/commit/71d483d4bd4a1865c2c9b296a97a70797b3a4b27))
+
+# [4.0.0-alpha.16](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.15...v4.0.0-alpha.16) (2024-02-17)
+
+### Features
+
+* add `deleted` property to `discord-reply` ([d5d4159](https://github.com/skyra-project/discord-components/commit/d5d4159fb088590f7d7bb4c0dead6e1d415aec23)), closes [#371](https://github.com/skyra-project/discord-components/issues/371)
+
+# [4.0.0-alpha.15](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.14...v4.0.0-alpha.15) (2024-02-17)
+
+### Bug Fixes
+
+* **DiscordHeader:** ensure that the level property is a number ([a97a969](https://github.com/skyra-project/discord-components/commit/a97a969ab12aa3470a8d9d48c29493512813422a))
+
+# [4.0.0-alpha.14](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.13...v4.0.0-alpha.14) (2024-02-11)
+
+### Bug Fixes
+
+* fixed import for util ([a4d3be7](https://github.com/skyra-project/discord-components/commit/a4d3be72c7a04720338afc2add04b6bc76eb6112))
+* properly code config functions ([b537f97](https://github.com/skyra-project/discord-components/commit/b537f979c4399558fc81946f00870c08b4894b94))
+
+# [4.0.0-alpha.13](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.12...v4.0.0-alpha.13) (2024-02-11)
+
+### Features
+
+* add `getConfig` and `setConfig` methods ([5a26c41](https://github.com/skyra-project/discord-components/commit/5a26c41de03fdc4c2e3434220fd9b2c69b131beb))
+
+# [4.0.0-alpha.12](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.11...v4.0.0-alpha.12) (2024-02-10)
+
+### Bug Fixes
+
+* **code:** remove language class, it aint working chief ([325d188](https://github.com/skyra-project/discord-components/commit/325d1883e028d75482ff2e03341fc0013db53538))
+
+# [4.0.0-alpha.11](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.10...v4.0.0-alpha.11) (2024-02-10)
+
+### Bug Fixes
+
+* only apply embed styling when required ([36b3b7a](https://github.com/skyra-project/discord-components/commit/36b3b7a267f265ebcc865a0efa032ac71a9fb1f0))
+
+# [4.0.0-alpha.10](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.9...v4.0.0-alpha.10) (2024-02-10)
+
+### Features
+
+* **code:** add `language` property for multiline and add a PrismJS language class when set ([c72c9b8](https://github.com/skyra-project/discord-components/commit/c72c9b85c22519f2e1864ff3ea99f59b87141c3d))
+
+# [4.0.0-alpha.9](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.8...v4.0.0-alpha.9) (2024-02-10)
+
+### Bug Fixes
+
+* **link:** remove `font-weight: normal` which prevents weight styled when nested ([caca673](https://github.com/skyra-project/discord-components/commit/caca67322b89ea6f8c23e2573797879da2f43dbd))
+
+# [4.0.0-alpha.8](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.7...v4.0.0-alpha.8) (2024-02-10)
+
+### Bug Fixes
+
+* proper header styling ([d2ccc26](https://github.com/skyra-project/discord-components/commit/d2ccc268fd9c1110f5309bb5d13905ef4df217ee))
+
+# [4.0.0-alpha.7](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.6...v4.0.0-alpha.7) (2024-02-10)
+
+### Bug Fixes
+
+* **button:** call checkType at render ([5ad7ecf](https://github.com/skyra-project/discord-components/commit/5ad7ecf74e24e90c2ed60a9c1af354e1ba327b7b))
+
+### Features
+
+* add discord-header component ([5552c6a](https://github.com/skyra-project/discord-components/commit/5552c6ad443c8250e43245d14537d0752864e609))
+
 # [4.0.0-alpha.6](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.5...v4.0.0-alpha.6) (2024-02-03)
 
 **Note:** Version bump only for package @skyra/discord-components-core

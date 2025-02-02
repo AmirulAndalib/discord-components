@@ -3,14 +3,18 @@ import { css, html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { styleMap } from 'lit/directives/style-map.js';
-import { avatars, type Profile, profiles } from '../../options.js';
+import { when } from 'lit/directives/when.js';
+import { avatars, profiles } from '../../config.js';
+import type { LightTheme, Profile } from '../../types.js';
 import { messagesLightTheme } from '../discord-messages/DiscordMessages.js';
 import VerifiedTick from '../svgs/VerifiedTick.js';
-import type { LightTheme } from '../../types.js';
 
 @customElement('discord-thread-message')
 export class DiscordThreadMessage extends LitElement implements LightTheme {
-	public static override styles = css`
+	/**
+	 * @internal
+	 */
+	public static override readonly styles = css`
 		:host {
 			height: 18px;
 			min-width: 0;
@@ -102,7 +106,8 @@ export class DiscordThreadMessage extends LitElement implements LightTheme {
 
 	/**
 	 * The message author's username.
-	 * @default 'User'
+	 *
+	 * @defaultValue 'User'
 	 */
 	@property()
 	public accessor author = 'User';
@@ -156,24 +161,25 @@ export class DiscordThreadMessage extends LitElement implements LightTheme {
 	@property({ type: Boolean, reflect: true, attribute: 'light-theme' })
 	public accessor lightTheme = false;
 
-	protected override render() {
-		const resolveAvatar = (avatar: string): string => avatars[avatar] ?? avatar ?? avatars.default;
+	private resolveAvatar(avatar: string): string {
+		return avatars[avatar] ?? avatar ?? avatars.default;
+	}
 
+	protected override render() {
 		const defaultData: Profile = { author: this.author, bot: this.bot, verified: this.verified, server: this.server, roleColor: this.roleColor };
 		const profileData: Profile = Reflect.get(profiles, this.profile) ?? {};
-		const profile: Profile = { ...defaultData, ...profileData, ...{ avatar: resolveAvatar(profileData.avatar ?? this.avatar) } };
+		const profile: Profile = { ...defaultData, ...profileData, avatar: this.resolveAvatar(profileData.avatar ?? this.avatar) };
 
 		return html`<img src=${ifDefined(profile.avatar)} class="discord-thread-message-avatar" alt=${ifDefined(profile.author)} />
-			${html`
-				${profile.bot && !profile.server
-					? html`<span class="discord-application-tag"> ${profile.verified ? VerifiedTick() : null} Bot </span>`
-					: null}
-				${profile.server && !profile.bot ? html`<span class="discord-application-tag">Server</span>` : null}
-			`}
+			${when(
+				profile.bot && !profile.server,
+				() => html`<span class="discord-application-tag"> ${profile.verified ? VerifiedTick() : null} App </span>`
+			)}
+			${when(profile.server && !profile.bot, () => html`<span class="discord-application-tag">Server</span>`)}
 			<span class="discord-thread-message-username" style=${styleMap({ color: profile.roleColor })}> ${profile.author} </span>
 			<div class="discord-thread-message-content">
 				<slot></slot>
-				${this.edited ? html`<span class="discord-message-edited">(edited)</span>` : null}
+				${when(this.edited, () => html`<span class="discord-message-edited">(edited)</span>`)}
 			</div>
 			<span class="discord-thread-message-timestamp">${this.relativeTimestamp}</span>`;
 	}

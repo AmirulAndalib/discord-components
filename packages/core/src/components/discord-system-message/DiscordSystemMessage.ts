@@ -1,6 +1,8 @@
 import { consume } from '@lit/context';
-import { css, html, LitElement, type TemplateResult } from 'lit';
+import { css, html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import { choose } from 'lit/directives/choose.js';
+import type { DiscordTimestamp, LightTheme } from '../../types.js';
 import { handleTimestamp } from '../../util.js';
 import { messagesLightTheme } from '../discord-messages/DiscordMessages.js';
 import Boost from '../svgs/Boost.js';
@@ -8,16 +10,19 @@ import DMCall from '../svgs/DMCall.js';
 import DMEdit from '../svgs/DMEdit.js';
 import DMMissedCall from '../svgs/DMMissedCall.js';
 import Pin from '../svgs/Pin.js';
+import ServerUpgrade from '../svgs/ServerUpgrade.js';
 import SystemAlert from '../svgs/SystemAlert.js';
 import SystemError from '../svgs/SystemError.js';
 import Thread from '../svgs/Thread.js';
 import UserJoin from '../svgs/UserJoin.js';
 import UserLeave from '../svgs/UserLeave.js';
-import type { DiscordTimestamp, LightTheme } from '../../types.js';
 
 @customElement('discord-system-message')
 export class DiscordSystemMessage extends LitElement implements LightTheme {
-	public static override styles = css`
+	/**
+	 * @internal
+	 */
+	public static override readonly styles = css`
 		:host {
 			color: #8e9297;
 			display: flex;
@@ -126,16 +131,16 @@ export class DiscordSystemMessage extends LitElement implements LightTheme {
 			width: 2rem;
 			left: 2.2rem;
 			top: 1.75rem;
-			border-left: 2px solid #4f545c;
-			border-bottom: 2px solid #4f545c;
-			border-bottom-left-radius: 8px;
+			border-left: 2px solid #4f545c !important;
+			border-bottom: 2px solid #4f545c !important;
+			border-bottom-left-radius: 8px !important;
 			bottom: 29px;
 			content: '';
 			position: absolute;
 		}
 
 		:host([light-theme][has-thread]):after {
-			border-color: #747f8d;
+			border-color: #747f8d !important;
 		}
 	`;
 
@@ -147,10 +152,10 @@ export class DiscordSystemMessage extends LitElement implements LightTheme {
 
 	/**
 	 * The type of system message this is, this will change the icon shown.
-	 * Valid values: `join`, `leave`, `call`, `missed-call`, `boost`, `edit`, `thread`, `pin`, `alert`, and `error`.
+	 * Valid values: `join`, `leave`, `call`, `missed-call`, `boost`, `edit`, `thread`, `pin`, `alert`, `upgrade` and `error`.
 	 */
 	@property({ reflect: true, attribute: 'type' })
-	public accessor type: 'join' | 'leave' | 'call' | 'missed-call' | 'boost' | 'edit' | 'thread' | 'pin' | 'alert' | 'error' = 'join';
+	public accessor type: 'alert' | 'boost' | 'call' | 'edit' | 'error' | 'join' | 'leave' | 'missed-call' | 'pin' | 'thread' | 'upgrade' = 'join';
 
 	/**
 	 * Whether this message is to show channel name changes, used to match Discord's style.
@@ -165,12 +170,12 @@ export class DiscordSystemMessage extends LitElement implements LightTheme {
 	@property({ type: Boolean, reflect: true, attribute: 'light-theme' })
 	public accessor lightTheme = false;
 
-	public checkType(value: string) {
-		if (typeof value !== 'string') {
+	public checkType() {
+		if (typeof this.type !== 'string') {
 			throw new TypeError('DiscordSystemMessage `type` prop must be a string.');
-		} else if (!['join', 'leave', 'call', 'missed-call', 'boost', 'edit', 'thread', 'pin', 'alert', 'error'].includes(value)) {
+		} else if (!['join', 'leave', 'call', 'missed-call', 'boost', 'edit', 'thread', 'pin', 'alert', 'error', 'upgrade'].includes(this.type)) {
 			throw new RangeError(
-				"DiscordSystemMessage `type` prop must be one of: 'join', 'leave', 'call', 'missed-call', 'boost', 'edit', 'thread', 'pin', 'alert', 'error'"
+				"DiscordSystemMessage `type` prop must be one of: 'join', 'leave', 'call', 'missed-call', 'boost', 'edit', 'thread', 'pin', 'alert', 'upgrade', 'error'"
 			);
 		}
 	}
@@ -183,44 +188,24 @@ export class DiscordSystemMessage extends LitElement implements LightTheme {
 
 	protected override render() {
 		this.timestamp = handleTimestamp(this.timestamp);
-		this.checkType(this.type);
+		this.checkType();
 
-		let icon: TemplateResult<1>;
-
-		switch (this.type) {
-			case 'join':
-				icon = UserJoin();
-				break;
-			case 'leave':
-				icon = UserLeave();
-				break;
-			case 'call':
-				icon = DMCall();
-				break;
-			case 'missed-call':
-				icon = DMMissedCall();
-				break;
-			case 'edit':
-				icon = DMEdit();
-				break;
-			case 'boost':
-				icon = Boost();
-				break;
-			case 'thread':
-				icon = Thread();
-				break;
-			case 'pin':
-				icon = Pin();
-				break;
-			case 'alert':
-				icon = SystemAlert();
-				break;
-			case 'error':
-				icon = SystemError();
-				break;
-		}
-
-		return html`<div class="discord-message-icon">${icon}</div>
+		return html`<div class="discord-message-icon">
+				${choose(this.type, [
+					['join', () => UserJoin()],
+					['leave', () => UserLeave()],
+					['call', () => DMCall()],
+					['missed-call', () => DMMissedCall()],
+					['edit', () => DMEdit()],
+					['boost', () => Boost()],
+					['thread', () => Thread()],
+					['pin', () => Pin()],
+					['alert', () => SystemAlert()],
+					// eslint-disable-next-line unicorn/throw-new-error
+					['error', () => SystemError()],
+					['upgrade', () => ServerUpgrade()]
+				])}
+			</div>
 			<div class="discord-message-content">
 				<span>
 					<slot></slot>

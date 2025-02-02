@@ -3,17 +3,22 @@ import { css, html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { styleMap } from 'lit/directives/style-map.js';
-import { avatars, type Profile, profiles } from '../../options.js';
+import { when } from 'lit/directives/when.js';
+import { avatars, profiles } from '../../config.js';
+import type { LightTheme, Profile } from '../../types.js';
+import { getClanIcon } from '../../util.js';
 import { messagesCompactMode, messagesLightTheme } from '../discord-messages/DiscordMessages.js';
 import AttachmentReply from '../svgs/AttachmentReply.js';
 import CommandReply from '../svgs/CommandReply.js';
 import ReplyIcon from '../svgs/ReplyIcon.js';
 import VerifiedTick from '../svgs/VerifiedTick.js';
-import type { LightTheme } from '../../types.js';
 
 @customElement('discord-reply')
 export class DiscordReply extends LitElement implements LightTheme {
-	public static override styles = css`
+	/**
+	 * @internal
+	 */
+	public static override readonly styles = css`
 		:host {
 			color: #b9bbbe;
 			display: flex;
@@ -34,7 +39,8 @@ export class DiscordReply extends LitElement implements LightTheme {
 			color: #4f5660;
 		}
 
-		:host([compact-mode]) {
+		:host([compact-mode]),
+		:host([deleted]) {
 			margin-left: 62px;
 			margin-bottom: 0;
 		}
@@ -51,15 +57,15 @@ export class DiscordReply extends LitElement implements LightTheme {
 			margin-top: -1px;
 			margin-left: -1px;
 			margin-bottom: -2px;
-			border-left: 2px solid #4f545c;
-			border-bottom: 0 solid #4f545c;
-			border-right: 0 solid #4f545c;
-			border-top: 2px solid #4f545c;
+			border-left: 2px solid #4f545c !important;
+			border-bottom: 0 solid #4f545c !important;
+			border-right: 0 solid #4f545c !important;
+			border-top: 2px solid #4f545c !important;
 			border-top-left-radius: 6px;
 		}
 
 		:host([light-theme]):before {
-			border-color: #747f8d;
+			border-color: #747f8d !important;
 		}
 
 		.discord-replied-message-avatar,
@@ -85,6 +91,56 @@ export class DiscordReply extends LitElement implements LightTheme {
 		:host([light-theme]) .discord-reply-badge {
 			color: #4f5660;
 			background: #e3e5e8;
+		}
+
+		:host .discord-clan-tag {
+			background-color: oklab(0.431937 0.00109309 -0.0132537 / 0.8);
+			color: #fff;
+			font-size: 12px;
+			font-weight: 500;
+			margin-right: 0.25rem;
+			border-radius: 4px;
+			line-height: 100%;
+			text-transform: uppercase;
+			justify-content: space-between;
+			display: inline-flex;
+			align-items: center;
+			padding: 0 0.275rem;
+			margin-top: 0.075em;
+			height: 1.2rem;
+			opacity: 0.55;
+			transition: background-color 100ms ease-in-out;
+			cursor: pointer;
+		}
+
+		:host .discord-clan-tag:hover {
+			background-color: oklab(0.431937 0.00109309 -0.0132537 / 0.5);
+		}
+
+		:host([light-theme]) .discord-clan-tag {
+			opacity: 0.65;
+			background-color: hsl(0 calc(1 * 0%) 0.8%/0.09);
+			color: #000;
+		}
+
+		:host([light-theme]) .discord-clan-tag:hover {
+			background-color: hsl(0 calc(1 * 0%) 0.8%/0.03);
+		}
+
+		:host .discord-clan-tag svg,
+		:host .discord-clan-tag img {
+			display: inline-flex;
+			align-items: center;
+			margin-right: 0.25rem;
+			right: 0.25rem;
+		}
+
+		:host .discord-clan-tag span {
+			display: inline-flex;
+			align-items: center;
+			user-select: none;
+			-webkit-user-select: none;
+			line-height: 1rem !important;
 		}
 
 		.discord-application-tag {
@@ -147,6 +203,14 @@ export class DiscordReply extends LitElement implements LightTheme {
 			cursor: pointer;
 		}
 
+		.discord-replied-deleted-message-content {
+			color: inherit;
+			font-size: inherit;
+			line-height: inherit;
+			white-space: pre;
+			text-overflow: ellipsis;
+		}
+
 		.discord-message-edited {
 			color: #72767d;
 			font-size: 10px;
@@ -186,7 +250,8 @@ export class DiscordReply extends LitElement implements LightTheme {
 
 	/**
 	 * The message author's username.
-	 * @default 'User'
+	 *
+	 * @defaultValue 'User'
 	 */
 	@property()
 	public accessor author = 'User';
@@ -199,17 +264,24 @@ export class DiscordReply extends LitElement implements LightTheme {
 
 	/**
 	 * Whether the message author is a bot or not.
-	 * Only works if `server` is `false` or `undefined`.
+	 * Only works if `server` and `officialApp` is `false` or `undefined`.
 	 */
 	@property({ type: Boolean })
 	public accessor bot = false;
 
 	/**
 	 * Whether the message author is a server crosspost webhook or not.
-	 * Only works if `bot` is `false` or `undefined`.
+	 * Only works if `bot` and `officialApp` is `false` or `undefined`.
 	 */
 	@property({ type: Boolean })
 	public accessor server = false;
+
+	/**
+	 * Whether the message author is a server crosspost webhook or not.
+	 * Only works if `bot` and `server` is `false` or `undefined`.
+	 */
+	@property({ type: Boolean, attribute: 'official-app' })
+	public accessor officialApp = false;
 
 	/**
 	 * Whether the author is the original poster.
@@ -233,7 +305,7 @@ export class DiscordReply extends LitElement implements LightTheme {
 	/**
 	 * The message author's primary role color. Can be any [CSS color value](https://www.w3schools.com/cssref/css_colors_legal.asp).
 	 */
-	@property()
+	@property({ attribute: 'role-color' })
 	public accessor roleColor: string;
 
 	/**
@@ -249,10 +321,46 @@ export class DiscordReply extends LitElement implements LightTheme {
 	public accessor attachment = false;
 
 	/**
-	 * Whether this reply pings the original message sender, prepending an "@" on the author's username.
+	 * Whether this reply pings the original message sender, prepending an "\@" on the author's username.
 	 */
 	@property({ type: Boolean })
 	public accessor mentions = false;
+
+	/**
+	 * The clan icon of the author, which comes from the enabled clan tag
+	 */
+	@property({ attribute: 'clan-icon' })
+	public accessor clanIcon: string;
+
+	/**
+	 * The clan name of the author, which comes from the enabled clan tag
+	 */
+	@property({ attribute: 'clan-tag' })
+	public accessor clanTag: string;
+
+	/**
+	 * Whether this reply is a deleted message.
+	 * When set to true, any content inside the tags is ignored as no `slot` is rendered.
+	 * The message will always be `"Original message was deleted"`.
+	 * Furthermore, the following properties are ignored:
+	 *
+	 * - {@link DiscordReply.profile | profile}
+	 * - {@link DiscordReply.author | author}
+	 * - {@link DiscordReply.avatar | avatar}
+	 * - {@link DiscordReply.bot | bot}
+	 * - {@link DiscordReply.server | server}
+	 * - {@link DiscordReply.op | op}
+	 * - {@link DiscordReply.verified | verified}
+	 * - {@link DiscordReply.edited | edited}
+	 * - {@link DiscordReply.roleColor | roleColor}
+	 * - {@link DiscordReply.command | command}
+	 * - {@link DiscordReply.attachment | attachment}
+	 * - {@link DiscordReply.mentions | mentions}
+	 * - {@link DiscordReply.clanIcon | clanIcon}
+	 * - {@link DiscordReply.clanTag | clanTag}
+	 */
+	@property({ type: Boolean, reflect: true })
+	public accessor deleted = false;
 
 	@consume({ context: messagesLightTheme })
 	@property({ type: Boolean, reflect: true, attribute: 'light-theme' })
@@ -265,40 +373,79 @@ export class DiscordReply extends LitElement implements LightTheme {
 	@property({ type: Boolean, reflect: true, attribute: 'compact-mode' })
 	public accessor compactMode = false;
 
-	protected override render() {
-		const resolveAvatar = (avatar: string): string => avatars[avatar] ?? avatar ?? avatars.default;
+	private resolveAvatar(avatar: string): string {
+		return avatars[avatar] ?? avatar ?? avatars.default;
+	}
 
+	protected override render() {
 		const defaultData: Profile = {
 			author: this.author,
 			bot: this.bot,
 			verified: this.verified,
+			officialApp: this.officialApp,
 			op: this.op,
 			server: this.server,
-			roleColor: this.roleColor
+			roleColor: this.roleColor,
+			clanIcon: this.clanIcon,
+			clanTag: this.clanTag
 		};
 		const profileData: Profile = Reflect.get(profiles, this.profile) ?? {};
-		const profile: Profile = { ...defaultData, ...profileData, ...{ avatar: resolveAvatar(profileData.avatar ?? this.avatar) } };
+		const profile: Profile = { ...defaultData, ...profileData, avatar: this.resolveAvatar(profileData.avatar ?? this.avatar) };
 
-		return html`${this.compactMode
-				? html`<div class="discord-reply-badge">${ReplyIcon()}</div>`
-				: html`<img class="discord-replied-message-avatar" src="${ifDefined(profile.avatar)}" alt="${ifDefined(profile.author)}" />`}
-			${html`
-				${profile.bot && !profile.server
-					? html`<span class="discord-application-tag">${profile.verified ? VerifiedTick() : ''}Bot</span>`
-					: null}
-				${profile.server && !profile.bot ? html`<span class="discord-application-tag">Server</span>` : ''}
-				${profile.op ? html`<span class="discord-application-tag discord-application-tag-op">OP</span>` : ''}
-			`}
-			<span class="discord-replied-message-username" style=${styleMap({ color: profile.roleColor })}
-				>${this.mentions ? '@' : ''}${profile.author}</span
-			>
-			<!-- display: inline -->
-			<div class="discord-replied-message-content"
-				><slot></slot>${this.edited ? html`<span class="discord-message-edited">(edited)</span>` : ''}</div
-			>
-			${this.command
-				? CommandReply({ class: 'discord-replied-message-content-icon' })
-				: html`${this.attachment ? AttachmentReply({ class: 'discord-replied-message-content-icon' }) : ''}`}`;
+		const clanIcon = getClanIcon(profile.clanIcon);
+		const slicedClanTag = profile.clanTag?.slice(0, 4);
+
+		const profileTag = html`
+			${when(
+				profile.bot && !profile.server && !profile.officialApp,
+				() => html`<span class="discord-application-tag">${profile.verified ? VerifiedTick() : ''}App</span>`
+			)}
+			${when(profile.server && !profile.bot && !profile.officialApp, () => html`<span class="discord-application-tag">Server</span>`)}
+			${when(
+				profile.officialApp && !profile.server && !profile.bot,
+				() => html`<span class="discord-application-tag">${VerifiedTick()}OFFICIAL</span>`
+			)}
+		`;
+
+		return html`${when(
+			this.compactMode || this.deleted,
+			() => html`<div class="discord-reply-badge">${ReplyIcon()}</div>`,
+			() => html`<img class="discord-replied-message-avatar" src="${ifDefined(profile.avatar)}" alt="${ifDefined(profile.author)}" />`
+		)}
+		${when(
+			this.deleted,
+			() => html`<div class="discord-replied-deleted-message-content"><em>Original message was deleted</em></div>`,
+			() =>
+				html`${profileTag}
+					<span class="discord-replied-message-username" style=${styleMap({ color: profile.roleColor })}
+						>${when(this.mentions, () => '@')}${profile.author}</span
+					>
+					${when(
+						profile.clanIcon && profile.clanTag && profile.clanTag?.length > 0,
+						() =>
+							html`<span class="discord-clan-tag">
+								${clanIcon === 'string'
+									? html`<img
+											srcset=${ifDefined(clanIcon)}
+											alt=${ifDefined(slicedClanTag)}
+											width="12"
+											height="12"
+											draggable="false"
+										/>`
+									: clanIcon}
+								<span>${slicedClanTag}</span>
+							</span>`
+					)}
+					<!-- display: inline -->
+					<div class="discord-replied-message-content"
+						><slot></slot>${when(this.edited, () => html`<span class="discord-message-edited">(edited)</span>`)}</div
+					>
+					${when(
+						this.command,
+						() => CommandReply({ class: 'discord-replied-message-content-icon' }),
+						() => when(this.attachment, () => AttachmentReply({ class: 'discord-replied-message-content-icon' }))
+					)}`
+		)}`;
 	}
 }
 

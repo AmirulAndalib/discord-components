@@ -1,15 +1,19 @@
+import { consume } from '@lit/context';
 import { css, html, LitElement } from 'lit';
-import { customElement, property, state } from 'lit/decorators.js';
+import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import type { LightTheme } from '../../types.js';
+import { messagesLightTheme } from '../discord-messages/DiscordMessages.js';
 
 @customElement('discord-link')
 export class DiscordLink extends LitElement implements LightTheme {
-	public static override styles = css`
+	/**
+	 * @internal
+	 */
+	public static override readonly styles = css`
 		a {
 			color: #00aff4;
-			font-weight: normal;
 			text-decoration: none;
 		}
 
@@ -17,35 +21,51 @@ export class DiscordLink extends LitElement implements LightTheme {
 			text-decoration: underline;
 		}
 
-		.discord-light-theme a {
+		.discord-link-light-theme a {
 			color: #00b0f4;
 		}
 	`;
 
-	@state()
+	@consume({ context: messagesLightTheme, subscribe: true })
+	@property({ type: Boolean, reflect: true, attribute: 'light-theme' })
 	public accessor lightTheme = false;
 
+	/**
+	 * The URL to link
+	 *
+	 * @example
+	 * ```ts
+	 * 'https://example.com/example.txt'
+	 * ```
+	 */
 	@property()
 	public accessor href: string;
 
+	/**
+	 * The `<a>` tag {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#rel | `rel`}
+	 */
 	@property()
 	public accessor rel: string;
 
+	/**
+	 * The `<a>` tag {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target | `target`}
+	 */
 	@property()
-	public accessor target: '_self' | '_blank' | '_parent' | '_top';
+	public accessor target: '_blank' | '_parent' | '_self' | '_top';
 
+	/**
+	 * The `<a>` tag {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#type | `type`}
+	 */
 	@property()
 	public accessor type: string;
 
 	protected override render() {
-		if (this.parentElement && 'lightTheme' in this.parentElement) this.lightTheme = (this.parentElement as LightTheme).lightTheme;
-
 		return html`<a
 			href=${ifDefined(this.href)}
 			rel=${ifDefined(this.rel)}
 			target=${ifDefined(this.target)}
 			type=${ifDefined(this.type)}
-			class=${classMap({ 'discord-light-theme': this.lightTheme })}
+			class=${classMap({ 'discord-link-light-theme': this.lightTheme })}
 			><slot></slot
 		></a>`;
 	}

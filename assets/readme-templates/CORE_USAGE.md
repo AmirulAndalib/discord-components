@@ -24,6 +24,12 @@ conversation:
 </discord-messages>
 ```
 
+> [!IMPORTANT]
+>
+> For further examples on how to use components, please refer to the Stackblitz
+> examples linked below. Choose the framework you are using and click on the
+> "Open in Stackblitz" button to see the code and how it renders in the browser.
+
 ### Using the Discord font
 
 This library can use the Discord font if you load it into your project. You can
@@ -59,58 +65,29 @@ do so by including the CSS below:
 
 #### Angular
 
-##### Live Demo
+##### Important Notes
 
-[![Edit on Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/angular)
-
-##### Including the Custom Element Schema
-
-Including the `CUSTOM_ELEMENTS_SCHEMA` in the module allows the use of the web
-components in the HTML markup without the compiler producing errors. This code
-should be added into the `AppModule` and in every other modules that use your
-custom elements. Here is an example of adding it to `AppModule`:
+You need to import the `CUSTOM_ELEMENTS_SCHEMA` from `@angular/core` and add it
+to the `schemas` array of your module or component decorator for the module or
+component using custom elements. This is to ensure that Angular knows custom
+elements are used in this module or component.
 
 ```ts
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppComponent } from './app.component';
-
-@NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserModule],
-  providers: [],
-  bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
-})
-export class AppModule {}
-```
-
-The `CUSTOM_ELEMENTS_SCHEMA` needs to be included in any module that uses custom
-elements.
-
-##### Including the web-components
-
-Once you have defined the `CUSTOM_ELEMENTS_SCHEMA` you can include the
-webcomponents in your components. Here is a simple example:
-
-```ts
-import { Component } from '@angular/core';
-
-// Import the webcomponents that will be used in this file
-import '@skyra/discord-components-core/discord-messages';
-import '@skyra/discord-components-core/discord-message';
+import { CUSTOM_ELEMENTS_SCHEMA, Component } from '@angular/core';
 
 @Component({
-  selector: 'app',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppComponent {}
 ```
 
+##### Live Demo
+
+[![Open in Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/angular)
+
 #### React
 
-##### Important
+##### Important Notes
 
 React is currently the only library among the "big" libraries for frontend
 development that does not fully support custom elements / webcomponents yet (see
@@ -124,7 +101,7 @@ knows what their plans are.
 
 ###### Live Demo
 
-[![Edit on Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/react-vite-ts)
+[![Open in Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/react-vite-ts)
 
 ##### Create React App
 
@@ -133,17 +110,17 @@ knows what their plans are.
 Create React App is no longer the recommended way to start with a React app as
 per React's own documentation. We very strongly recommend using Vite instead.
 
-### NextJS
+##### NextJS
 
-#### Live Demo Pages Directory
+###### Live Demo Pages Directory
 
-[![Edit on Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/nextjs-ts)
+[![Open in Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/nextjs-ts)
 
-#### Live Demo App Directory
+###### Live Demo App Directory
 
-[![Edit on Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/nextjs-app-directory-ts)
+[![Open in Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/nextjs-app-directory-ts)
 
-#### Known limitations
+###### Known limitations
 
 1. All the React components will only render on the client, they are bundled
    with the `'use client';` header that NextJS expects for CSR only components.
@@ -157,13 +134,19 @@ per React's own documentation. We very strongly recommend using Vite instead.
    open to suggestions on how to fix this, ideally through a pull request to
    [https://github.com/skyra-project/discord-components-implementations/tree/main/templates/nextjs-ts].
 
+##### Docusaurus
+
+###### Live Demo
+
+[![Open in Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/react-docusaurus-ts)
+
 #### Vue
 
 ##### Vite
 
 ###### Live Demo
 
-[![Edit on Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/vue-vite-ts)
+[![Open in Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/vue-vite-ts)
 
 ###### Configuration
 
@@ -174,15 +157,12 @@ components. You can do that with the following code in your `vite.config.ts`:
 import vue from '@vitejs/plugin-vue';
 import { defineConfig } from 'vite';
 
-const regex = /^discord-/;
-
 export default defineConfig({
   plugins: [
     vue({
       template: {
         compilerOptions: {
-          // Tell Vite to ignore all components defined in the @skyra/discord-components-core package.
-          isCustomElement: (tag) => regex.test(tag)
+          isCustomElement: (tag) => tag.startsWith('discord-')
         }
       }
     })
@@ -194,7 +174,75 @@ export default defineConfig({
 
 ###### Live Demo
 
-<!-- TODO: Insert Nuxt live demo -->
+[![Open in Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/nuxt3-ts)
+
+###### Configuration
+
+When using Nuxt 3 you need to setup Vite to recognise the custom components. You
+can do that with the following code in your `nuxt.config.ts`:
+
+```ts
+export default defineNuxtConfig({
+  devtools: { enabled: true },
+  vue: {
+    compilerOptions: {
+      isCustomElement: (tag) => tag.startsWith('discord-')
+    }
+  }
+});
+```
+
+#### Astro
+
+##### Important Notes
+
+Because it is possible to use different integrations in an Astro project you can
+also reference the other examples here. The live demo linked below uses the
+[Lit integration for Astro](https://docs.astro.build/en/guides/integrations-guide/lit/)
+as well as the
+[React integration for Astro](https://docs.astro.build/en/guides/integrations-guide/react/).
+
+##### Live Demo
+
+[![Open in Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/astro)
+
+#### Solid
+
+##### Live Demo
+
+[![Open in Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/solid-vite-ts)
+
+#### Svelte
+
+##### Vite
+
+###### Live Demo
+
+[![Open in Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/svelte-vite-ts)
+
+##### Sveltekit
+
+###### Live Demo
+
+[![Open in Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/sveltekit-ts)
+
+#### Qwik
+
+##### Live Demo
+
+[![Open in Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/qwik-vite-ts)
+
+#### Preact
+
+##### Live Demo
+
+[![Open in Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/preact-vite-ts)
+
+#### HTMX
+
+##### Live Demo
+
+[![Open in Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/htmx-vite-ts)
 
 #### No Framework
 
@@ -207,6 +255,6 @@ that the browser can support. The live demo below uses Vite.
 
 ##### Live Demo
 
-[![Edit on Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/no-framework-vite)
+[![Open in Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/no-framework-vite)
 
 <!-- # CORE_USAGE END # -->

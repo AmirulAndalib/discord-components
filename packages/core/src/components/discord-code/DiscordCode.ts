@@ -1,12 +1,15 @@
 import { consume } from '@lit/context';
 import { css, html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { messagesLightTheme } from '../discord-messages/DiscordMessages.js';
 import type { LightTheme } from '../../types.js';
+import { messagesLightTheme } from '../discord-messages/DiscordMessages.js';
 
 @customElement('discord-code')
 export class DiscordCode extends LitElement implements LightTheme {
-	public static override styles = css`
+	/**
+	 * @internal
+	 */
+	public static override readonly styles = css`
 		:host {
 			background-color: #2f3136;
 			white-space: break-spaces;
@@ -69,6 +72,9 @@ export class DiscordCode extends LitElement implements LightTheme {
 		}
 	`;
 
+	/**
+	 * Whether this code block is a multi-line code block
+	 */
 	@property({ type: Boolean, reflect: true })
 	public accessor multiline = false;
 
@@ -76,19 +82,15 @@ export class DiscordCode extends LitElement implements LightTheme {
 	@property({ type: Boolean, reflect: true, attribute: 'light-theme' })
 	public accessor lightTheme = false;
 
+	/**
+	 * Whether this code block exists within a `discord-embed` component.
+	 */
 	@property({ type: Boolean, reflect: true })
 	public accessor embed = false;
 
-	protected override willUpdate() {
-		if (this.parentElement && 'lightTheme' in this.parentElement) {
-			const parent = this.parentElement as { lightTheme: boolean };
-			this.lightTheme = parent.lightTheme;
-		}
-	}
-
 	protected override render() {
 		if (this.multiline) {
-			return html`<discord-pre embed
+			return html`<discord-pre ?embed=${this.embed}
 				><code><slot></slot></code
 			></discord-pre>`;
 		}

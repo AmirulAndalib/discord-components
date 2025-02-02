@@ -1,11 +1,16 @@
 import { css, html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
+import { when } from 'lit/directives/when.js';
+import { DiscordComponentsError } from '../../util.js';
 import LaunchIcon from '../svgs/LaunchIcon.js';
-import type { DiscordButtonProps } from '../../types.js';
 
 @customElement('discord-button')
-export class DiscordButton extends LitElement implements DiscordButtonProps {
-	public static override styles = css`
+export class DiscordButton extends LitElement {
+	/**
+	 * @internal
+	 */
+	public static override readonly styles = css`
 		:host > *:first-child {
 			display: flex;
 			justify-content: center;
@@ -28,6 +33,13 @@ export class DiscordButton extends LitElement implements DiscordButtonProps {
 			font-weight: 500;
 			line-height: 16px;
 			text-decoration: none !important;
+			/* CSS Reset to unset button styling */
+			border-width: unset;
+			border-style: unset;
+			border-color: unset;
+			border-image: unset;
+			box-sizing: unset;
+			font-family: 'gg sans', 'Noto Sans', Whitney, 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
 		}
 
 		.success {
@@ -67,7 +79,7 @@ export class DiscordButton extends LitElement implements DiscordButtonProps {
 		}
 
 		.disabled {
-			cursor: not-allowed;
+			cursor: not-allowed !important;
 			opacity: 0.5;
 		}
 
@@ -113,36 +125,88 @@ export class DiscordButton extends LitElement implements DiscordButtonProps {
 	 * Valid values: `primary`, `secondary`, `success`, `destructive`.
 	 */
 	@property({ reflect: true, attribute: 'type' })
-	public accessor type: 'primary' | 'secondary' | 'success' | 'destructive' = 'secondary';
+	public accessor type: 'destructive' | 'primary' | 'secondary' | 'success' = 'secondary';
 
-	public handleType(value: string) {
-		if (typeof value !== 'string') {
-			throw new TypeError('DiscordButton `type` prop must be a string.');
-		} else if (!['primary', 'secondary', 'success', 'destructive'].includes(value)) {
-			throw new RangeError("DiscordButton `type` prop must be one of: 'primary', 'secondary', 'success', 'destructive'");
+	/**
+	 * An `id` of a modal that should be opened when this button is clicked. This should match the `modal-id` of a `discord-modal` element.
+	 *
+	 * @remarks
+	 * - `discord-modal`s use the HTML [dialog](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) element. and are opened through `<ref>.showModal()`
+	 * - If {@link DiscordButton.url} is set this will be ignored.
+	 * - If {@link DiscordButton.disabled} is set this will be ignored.
+	 */
+	@property({ reflect: true, attribute: 'modal-id' })
+	public accessor modalId: string;
+
+	private readonly validButtonTypes = new Set(['primary', 'secondary', 'success', 'destructive']);
+
+	public checkType() {
+		if (this.type) {
+			if (typeof this.type !== 'string') {
+				throw new TypeError('DiscordButton `type` prop must be a string.');
+			} else if (!this.validButtonTypes.has(this.type)) {
+				throw new RangeError("DiscordButton `type` prop must be one of: 'primary', 'secondary', 'success', 'destructive'");
+			}
+		}
+	}
+
+	public checkParentElement() {
+		if (this.parentElement?.tagName.toLowerCase() !== 'discord-action-row') {
+			throw new DiscordComponentsError('All <discord-button> components must be direct children of <discord-action-row>.');
+		}
+	}
+
+	protected handleButtonClick() {
+		if (this.modalId) {
+			const rootDiscordMessagesElement = this.parentElement?.parentElement?.parentElement?.parentElement;
+			if (rootDiscordMessagesElement?.tagName?.toLowerCase() === 'discord-messages') {
+				const discordModalComponent = rootDiscordMessagesElement?.querySelector(`discord-modal`);
+				const dialogElement = discordModalComponent?.shadowRoot?.querySelector(`dialog#${this.modalId}`);
+				const divRootModal = dialogElement?.querySelector(`div.discord-modal-box`);
+
+				if (dialogElement instanceof HTMLDialogElement && divRootModal instanceof HTMLDivElement) {
+					dialogElement.showModal();
+					divRootModal.style.display = 'flex';
+
+					if (discordModalComponent) {
+						const originalDocumentOverflowStyle = globalThis.getComputedStyle(globalThis.document.body).overflow;
+						discordModalComponent.originalBodyOverflow = originalDocumentOverflowStyle;
+
+						globalThis.document.body.style.overflow = 'hidden';
+					}
+				}
+			}
 		}
 	}
 
 	protected override render() {
-		if (this.parentElement?.tagName.toLowerCase() !== 'discord-action-row') {
-			throw new Error('All <discord-button> components must be direct children of <discord-action-row>.');
-		}
+		this.checkType();
+		this.checkParentElement();
 
-		const isActive = this.url && !this.disabled;
+		const isActiveLinkButton = this.url && !this.disabled;
 
 		const content = html`
-			${this.emoji ? html`<img src=${this.emoji} alt=${this.emojiName} draggable="true" class="emoji" />` : null}
+			${when(this.emoji, () => html`<img src=${this.emoji} alt=${this.emojiName} draggable="true" class="emoji" />`)}
 			<span>
 				<slot></slot>
 			</span>
-			${this.url ? html`${LaunchIcon()}` : null}
+			${when(this.url, () => LaunchIcon())}
 		`;
 
-		if (isActive) {
-			return html`<a class="secondary" href=${this.url} target="_blank" rel="noopener noreferrer"> ${content} </a>`;
+		if (isActiveLinkButton) {
+			return html`<a class="secondary" href=${this.url} target="_blank" rel="noopener noreferrer">${content}</a>`;
 		}
 
-		return html`<div class=${`${this.type} ${this.disabled ? 'disabled' : 'hoverable'}`}>${content}</div>`;
+		return html`<button
+			class=${classMap({
+				[this.type]: true,
+				disabled: this.disabled,
+				hoverable: !this.disabled
+			})}
+			@click=${this.handleButtonClick}
+		>
+			${content}
+		</button>`;
 	}
 }
 

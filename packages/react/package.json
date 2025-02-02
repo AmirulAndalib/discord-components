@@ -1,6 +1,6 @@
 {
 	"name": "@skyra/discord-components-react",
-	"version": "4.0.0-alpha.6",
+	"version": "4.0.0-alpha.38",
 	"description": "React bindings for @skyra/discord-components-core",
 	"author": "@skyra",
 	"license": "MIT",
@@ -25,28 +25,28 @@
 	"homepage": "https://github.com/skyra-project/discord-components/tree/main/packages/react#readme",
 	"scripts": {
 		"build": "tsup && yarn build:rename-esm-index",
-		"build:rename-esm-index": "node scripts/rename-esm-index.mjs"
+		"build:rename-esm-index": "node scripts/rename-esm-index.mjs",
+		"prepack": "yarn build"
 	},
 	"dependencies": {
-		"@lit/react": "^1.0.3",
+		"@lit/react": "^1.0.7",
 		"@skyra/discord-components-core": "workspace:^",
-		"react": "^18.2.0"
+		"react": "^19.0.0"
 	},
 	"devDependencies": {
-		"@types/react": "^18.2.52",
+		"@types/react": "^19.0.8",
 		"colorette": "^2.0.20",
-		"rimraf": "^5.0.5",
-		"tsup": "^8.0.1",
-		"typescript": "^5.3.3"
+		"rimraf": "^6.0.1",
+		"tsup": "^8.3.6",
+		"typescript": "^5.7.2"
 	},
 	"peerDependencies": {
-		"react": "16.8.x || 17.x || 18.x",
-		"react-dom": "16.8.x || 17.x || 18.x"
+		"react": "16.8.x || 17.x || 18.x || 19.x",
+		"react-dom": "16.8.x || 17.x || 18.x || 19.x"
 	},
 	"files": [
 		"dist/",
-		"CHANGELOG.md",
-		"UPGRADING-TO-V4.md"
+		"CHANGELOG.md"
 	],
 	"engines": {
 		"node": ">=v18"

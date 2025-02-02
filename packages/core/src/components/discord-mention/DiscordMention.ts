@@ -1,7 +1,9 @@
 import { consume } from '@lit/context';
 import { css, html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import { choose } from 'lit/directives/choose.js';
 import { hexToRgba } from '../../hex-to-rgba.js';
+import type { LightTheme } from '../../types.js';
 import { messagesLightTheme } from '../discord-messages/DiscordMessages.js';
 import ChannelForum from '../svgs/ChannelForum.js';
 import ChannelIcon from '../svgs/ChannelIcon.js';
@@ -11,11 +13,13 @@ import CustomizeCommunity from '../svgs/CustomizeCommunity.js';
 import LockedVoiceChannel from '../svgs/LockedVoiceChannel.js';
 import ServerGuide from '../svgs/ServerGuide.js';
 import VoiceChannel from '../svgs/VoiceChannel.js';
-import type { LightTheme } from '../../types.js';
 
 @customElement('discord-mention')
 export class DiscordMention extends LitElement implements LightTheme {
-	public static override styles = css`
+	/**
+	 * @internal
+	 */
+	public static override readonly styles = css`
 		:host {
 			color: #e3e7f8;
 			background-color: hsla(235, 85.6%, 64.7%, 0.3);
@@ -104,17 +108,17 @@ export class DiscordMention extends LitElement implements LightTheme {
 	 */
 	@property({ reflect: true })
 	public accessor type:
-		| 'user'
 		| 'channel'
-		| 'role'
-		| 'voice'
-		| 'locked'
-		| 'thread'
-		| 'forum'
-		| 'slash'
-		| 'server-guide'
 		| 'channels-and-roles'
-		| 'customize-community' = 'user';
+		| 'customize-community'
+		| 'forum'
+		| 'locked'
+		| 'role'
+		| 'server-guide'
+		| 'slash'
+		| 'thread'
+		| 'user'
+		| 'voice' = 'user';
 
 	@property({ reflect: true })
 	public accessor color: string;
@@ -159,42 +163,21 @@ export class DiscordMention extends LitElement implements LightTheme {
 	}
 
 	protected override render() {
-		let mentionPrepend: ReturnType<typeof html>;
-		switch (this.type) {
-			case 'channel':
-				mentionPrepend = html`${ChannelIcon()}`;
-				break;
-			case 'user':
-			case 'role':
-				mentionPrepend = html`@`;
-				break;
-			case 'voice':
-				mentionPrepend = html`${VoiceChannel()}`;
-				break;
-			case 'locked':
-				mentionPrepend = html`${LockedVoiceChannel()}`;
-				break;
-			case 'thread':
-				mentionPrepend = html`${ChannelThread()}`;
-				break;
-			case 'forum':
-				mentionPrepend = html`${ChannelForum()}`;
-				break;
-			case 'server-guide':
-				mentionPrepend = html`${ServerGuide()}`;
-				break;
-			case 'channels-and-roles':
-				mentionPrepend = html`${ChannelsAndRoles()}`;
-				break;
-			case 'customize-community':
-				mentionPrepend = html`${CustomizeCommunity()}`;
-				break;
-			case 'slash':
-				mentionPrepend = html`/`;
-				break;
-		}
-
-		return html`<span class="no-wrap">${mentionPrepend}</span><slot></slot>`;
+		return html`<span class="no-wrap"
+				>${choose(this.type, [
+					['channel', () => ChannelIcon()],
+					['user', () => html`@`],
+					['role', () => html`@`],
+					['voice', () => VoiceChannel()],
+					['locked', () => LockedVoiceChannel()],
+					['thread', () => ChannelThread()],
+					['forum', () => ChannelForum()],
+					['server-guide', () => ServerGuide()],
+					['channels-and-roles', () => ChannelsAndRoles()],
+					['customize-community', () => CustomizeCommunity()],
+					['slash', () => html`/`]
+				])}</span
+			><slot></slot>`;
 	}
 }
 

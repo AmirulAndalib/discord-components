@@ -39,6 +39,7 @@ _React Bindings_
 
 - [@skyra/discord-components-react](#skyradiscord-components-react)
   - [Description](#description)
+    - [Upgrading guide](#upgrading-guide)
   - [Features](#features)
   - [Installation](#installation)
   - [Usage](#usage)
@@ -52,6 +53,8 @@ _React Bindings_
       - [Live Demo Pages Directory](#live-demo-pages-directory)
       - [Live Demo App Directory](#live-demo-app-directory)
       - [Known limitations](#known-limitations)
+    - [Docusaurus](#docusaurus)
+      - [Live Demo](#live-demo-1)
   - [Notes](#notes)
     - [TypeScript module augments](#typescript-module-augments)
     - [Avatar shortcuts](#avatar-shortcuts)
@@ -78,6 +81,13 @@ Discord message components to easily build and display fake Discord messages on
 your webpage.
 
 **This is an adaptation of [wc-discord-message] from [Danktuary]**
+
+### Upgrading guide
+
+The source code and documentation of this package has been updated for version
+4.x of this package. To find out how to upgrade from v3.x to v4.x, please refer
+to the
+[upgrading guide](https://discord-components.js.org/upgrading/v3x-v4x/#component-changes)
 
 <!-- # DESCRIPTION END # -->
 
@@ -107,6 +117,12 @@ yarn add @skyra/discord-components-core @skyra/discord-components-react
 <!-- # REACT_USAGE START # -->
 
 ## Usage
+
+> [!IMPORTANT]
+>
+> For further examples on how to use components, please refer to the Stackblitz
+> examples linked below. Choose the framework you are using and click on the
+> "Open in Stackblitz" button to see the code and how it renders in the browser.
 
 ### Important
 
@@ -153,7 +169,7 @@ do so by including the CSS below:
 
 #### Live Demo
 
-[![Edit on Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/react-vite-ts)
+[![Open in Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/react-vite-ts)
 
 ### Create React App
 
@@ -166,11 +182,11 @@ per React's own documentation. We very strongly recommend using Vite instead.
 
 #### Live Demo Pages Directory
 
-[![Edit on Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/nextjs-ts)
+[![Open in Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/nextjs-ts)
 
 #### Live Demo App Directory
 
-[![Edit on Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/nextjs-app-directory-ts)
+[![Open in Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/nextjs-app-directory-ts)
 
 #### Known limitations
 
@@ -186,6 +202,12 @@ per React's own documentation. We very strongly recommend using Vite instead.
    open to suggestions on how to fix this, ideally through a pull request to
    [https://github.com/skyra-project/discord-components-implementations/tree/main/templates/nextjs-ts].
 
+### Docusaurus
+
+#### Live Demo
+
+[![Open in Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/react-docusaurus-ts)
+
 <!-- # REACT_USAGE END # -->
 
 <!-- # REACT_NOTES START # -->
@@ -194,12 +216,14 @@ per React's own documentation. We very strongly recommend using Vite instead.
 
 ### TypeScript module augments
 
-This module uses a custom object on the browser `window` for configuration. In
-order to this you will need to include the following snippet in your source code
-when working in TypeScript:
+This library uses a custom object on the browser `window` for configuration.
+Under normal circumstances by simply importing the package (with
+`import @skyra/discord-components-react`) the module augmentations should also
+be loaded. If for whatever reason this does not happen, then you can define them
+manually yourself. You can do so with the following code snippet:
 
 ```ts
-import type { DiscordMessageOptions } from '@skyra/discord-components-core/dist/types/options';
+import type { DiscordMessageOptions } from '@skyra/discord-components-react';
 
 declare global {
   // eslint-disable-next-line no-var
@@ -223,10 +247,11 @@ The current avatar shortcut strings available are "blue" (default), "gray",
 ```
 
 If you want to add to or override the shortcuts, you can set them via
-`window.$discordMessage.avatars`.
+`globalThis.$discordMessage.avatars` or by using the `setConfig` function
+(`import { setConfig } from '@skyra/discord-components-react'`).
 
 ```ts
-window.$discordMessage = {
+globalThis.$discordMessage = {
   avatars: {
     default: 'blue',
     skyra: 'https://github.com/NM-EEA-Y.png',
@@ -235,14 +260,27 @@ window.$discordMessage = {
 };
 ```
 
+```ts
+import { setConfig } from '@skyra/discord-components-react';
+
+setConfig({
+  avatars: {
+    default: 'blue',
+    skyra: 'https://github.com/NM-EEA-Y.png',
+    djs: require('./assets/discord-avatar-djs.png') // You can use require syntax as well
+  }
+});
+```
+
 ### Profile shortcuts
 
 Sometimes you'll want to use the same message data across multiple messages. You
 can do so by providing an object of profiles in
-`window.$discordMessage.profiles`.
+`globalThis.$discordMessage.profiles` or by using the `setConfig` function
+(`import { setConfig } from '@skyra/discord-components-react'`).
 
 ```ts
-window.$discordMessage = {
+globalThis.$discordMessage = {
   profiles: {
     skyra: {
       author: 'Skyra',
@@ -258,6 +296,27 @@ window.$discordMessage = {
     }
   }
 };
+```
+
+```ts
+import { setConfig } from '@skyra/discord-components-react';
+
+setConfig({
+  profiles: {
+    skyra: {
+      author: 'Skyra',
+      avatar: 'https://github.com/NM-EEA-Y.png',
+      bot: true,
+      verified: true,
+      roleColor: '#1e88e5'
+    },
+    favna: {
+      author: 'Favna',
+      avatar: 'https://github.com/favna.png',
+      roleColor: '#ff0000'
+    }
+  }
+});
 ```
 
 And then in your React code:

@@ -1,17 +1,21 @@
 import { consume } from '@lit/context';
-import { css, html, LitElement } from 'lit';
-import { customElement, property, state } from 'lit/decorators.js';
+import { css, html, LitElement, type TemplateResult } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { styleMap } from 'lit/directives/style-map.js';
+import { when } from 'lit/directives/when.js';
+import type { Emoji, LightTheme } from '../../types.js';
 import { getGlobalEmojiUrl } from '../../util.js';
+import '../discord-custom-emoji/DiscordCustomEmoji.js';
 import { messagesLightTheme } from '../discord-messages/DiscordMessages.js';
-import type { Emoji } from '../../options.js';
-import type { DiscordEmbedProps, LightTheme } from '../../types.js';
 
 @customElement('discord-embed')
-export class DiscordEmbed extends LitElement implements DiscordEmbedProps, LightTheme {
-	public static override styles = css`
+export class DiscordEmbed extends LitElement implements LightTheme {
+	/**
+	 * @internal
+	 */
+	public static override readonly styles = css`
 		:host {
 			color: #dcddde;
 			display: flex;
@@ -121,6 +125,11 @@ export class DiscordEmbed extends LitElement implements DiscordEmbedProps, Light
 			width: 24px;
 		}
 
+		:host .discord-embed-author-block,
+		:host .discord-embed-author-block > span {
+			max-width: 95%;
+		}
+
 		:host .discord-embed-provider {
 			font-size: 0.75rem;
 			line-height: 1rem;
@@ -163,7 +172,8 @@ export class DiscordEmbed extends LitElement implements DiscordEmbedProps, Light
 
 		:host .discord-embed-image {
 			border-radius: 4px;
-			max-width: 100%;
+			max-width: 300px;
+			max-height: 300px;
 		}
 
 		:host .discord-embed-media {
@@ -250,6 +260,19 @@ export class DiscordEmbed extends LitElement implements DiscordEmbedProps, Light
 	public accessor embedTitle: string;
 
 	/**
+	 * An emoji that is prefixed to {@link DiscordEmbed.embedTitle | embedTitle}.
+	 *
+	 * This should be keyed as `{ key: { emojiData } }` wherein `key`
+	 * should occur in the {@link DiscordEmbed.embedTitle | embedTitle}.
+	 *
+	 * By default this component will use the global emojis from
+	 * {@link getGlobalEmojiUrl}, however on SSR frameworks like Nuxt 3 global config doesn't
+	 * work so we provide this as an alternative method.
+	 */
+	@property({ attribute: false })
+	public accessor embedEmojisMap: { [key: string]: Emoji } = {};
+
+	/**
 	 * The URL to open when you click on the embed title.
 	 */
 	@property()
@@ -269,11 +292,13 @@ export class DiscordEmbed extends LitElement implements DiscordEmbedProps, Light
 
 	/**
 	 * The embed video to use (displayed at the bottom, same slot as the image).
-	 * @important YouTube videos will not be playable on your projects, this is due to YouTube using DASH to play their videos rather
+	 *
+	 * @remarks
+	 * - YouTube videos will not be playable on your projects, this is due to YouTube using DASH to play their videos rather
 	 * than providing the raw media stream (in a container such as mp4 or ogg). Links to regular MP4 files (such as on a CDN) however
 	 * will autoplay!
-	 * @note Video takes priority over image.
-	 * @remark Providing both a video and an image will ensure the image is shown to users with browsers
+	 * - Video takes priority over image.
+	 * - Providing both a video and an image will ensure the image is shown to users with browsers
 	 * that do not support HTML5 video playback.
 	 * @example https://download.blender.org/peach/bigbuckbunny_movies/big_buck_bunny_1080p_stereo.ogg
 	 */
@@ -282,15 +307,11 @@ export class DiscordEmbed extends LitElement implements DiscordEmbedProps, Light
 
 	/**
 	 * The provider to show above the embed, for example for YouTube videos it will show "YouTube" at the top of the embed (above the author)
+	 *
 	 * @example YouTube
 	 */
 	@property()
 	public accessor provider: string;
-
-	// TODO: private hasPerformedRerenderChecks: 'dirty' | 'pristine' = 'pristine';
-
-	@state()
-	private accessor hasProvidedDescriptionSlot = true;
 
 	@consume({ context: messagesLightTheme, subscribe: true })
 	@property({ type: Boolean, reflect: true, attribute: 'light-theme' })
@@ -304,30 +325,49 @@ export class DiscordEmbed extends LitElement implements DiscordEmbedProps, Light
 			<div class="discord-embed-root">
 				<div class="discord-embed-wrapper">
 					<div class="discord-embed-grid">
-						${this.provider ? html`<div class="discord-embed-provider">${this.provider}</div>` : null}
-						${emojiParsedAuthorName
-							? html`<div class="discord-embed-author">
-									${this.authorImage ? html`<img src="${this.authorImage}" alt="" class="discord-author-image" />` : null}
-									${this.authorUrl
-										? html`<a href="${this.authorUrl}" target="_blank" rel="noopener noreferrer"> ${emojiParsedAuthorName} </a> `
-										: html`${emojiParsedAuthorName}`}
+						${when(this.provider, () => html`<div class="discord-embed-provider">${this.provider}</div>`)}
+						${when(
+							emojiParsedAuthorName,
+							() =>
+								html`<div class="discord-embed-author">
+									${when(
+										this.authorImage,
+										() => html`<img src=${ifDefined(this.authorImage)} alt="" class="discord-author-image" />`
+									)}
+									${when(
+										this.authorUrl,
+										() =>
+											html`<a
+												href=${ifDefined(this.authorUrl)}
+												target="_blank"
+												rel="noopener noreferrer"
+												class="discord-embed-author-block"
+											>
+												<span class="discord-embed-author-block">${emojiParsedAuthorName}</span>
+											</a>`,
+										() => html`<span class="discord-embed-author-block">${emojiParsedAuthorName}</span>`
+									)}
 								</div>`
-							: null}
-						${emojiParsedEmbedTitle
-							? html`<div class="discord-embed-title">
+						)}
+						${when(
+							emojiParsedEmbedTitle,
+							() =>
+								html`<div class="discord-embed-title">
 									${this.url
 										? html`<a href="${this.url}" target="_blank" rel="noopener noreferrer"> ${emojiParsedEmbedTitle} </a>`
 										: html`${emojiParsedEmbedTitle}`}
 								</div>`
-							: null}
-						${this.hasProvidedDescriptionSlot ? html`<slot name="description"></slot>` : null}
+						)}
+						<slot name="description"></slot>
 						<slot name="fields"></slot>
-						${this.image || this.video
-							? html`<div class=${classMap({ 'discord-embed-media': true, 'discord-embed-media-video': Boolean(this.video) })}>
+						${when(
+							this.image || this.video,
+							() =>
+								html`<div class=${classMap({ 'discord-embed-media': true, 'discord-embed-media-video': Boolean(this.video) })}>
 									${this.renderMedia()}
 								</div>`
-							: null}
-						${this.thumbnail ? html`<img src=${this.thumbnail} alt="" class="discord-embed-thumbnail" />` : null}
+						)}
+						${when(this.thumbnail, () => html`<img src=${ifDefined(this.thumbnail)} alt="" class="discord-embed-thumbnail" />`)}
 						<slot name="footer"></slot>
 					</div>
 				</div>
@@ -337,13 +377,23 @@ export class DiscordEmbed extends LitElement implements DiscordEmbedProps, Light
 	private renderMedia() {
 		if (this.video) {
 			return html`
-				<video controls muted preload="none" poster="${this.image}" src="${this.video}" height="225" width="400" class="discord-embed-video">
-					<img src="${this.image}" alt="Discord embed media" class="discord-embed-image" />
+				<video
+					controls
+					muted
+					preload="none"
+					poster=${ifDefined(this.image)}
+					src=${ifDefined(this.video)}
+					height="225"
+					width="400"
+					class="discord-embed-video"
+				>
+					<img src=${ifDefined(this.image)} alt="Discord embed media" class="discord-embed-image" />
 				</video>
 			`;
 		}
+
 		if (this.image) {
-			return html`<img src="${this.image}" alt="Discord embed media" class="discord-embed-image" />`;
+			return html`<img src=${ifDefined(this.image)} alt="Discord embed media" class="discord-embed-image" />`;
 		}
 
 		return null;
@@ -352,21 +402,35 @@ export class DiscordEmbed extends LitElement implements DiscordEmbedProps, Light
 	private parseTitle(title?: string) {
 		if (!title) return null;
 
-		const words = title.split(' ');
+		const el: (TemplateResult<1> | string)[] = [];
+		let complete = '';
 
-		return words.map((word: string, idx: number) => {
-			const emoji = getGlobalEmojiUrl(word) ?? ({} as Emoji);
-			let el;
-			if (emoji.name) {
-				el = html`
-					<span class="discord-embed-custom-emoji">
-						<img src="${ifDefined(emoji.url)}" alt="${emoji.name}" class="discord-embed-custom-emoji-image" />
-					</span>
-				`;
-			} else {
-				el = idx < words.length - 1 ? `${word} ` : word;
+		for (const words of title.split('\n')) {
+			for (const word of words.split(' ')) {
+				const emoji = getGlobalEmojiUrl(word) ?? this.embedEmojisMap[word] ?? ({} as Emoji);
+
+				if (emoji.name) {
+					el.push(html`<discord-custom-emoji name=${emoji.name} url=${ifDefined(emoji.url)} embed-emoji></discord-custom-emoji>`);
+				} else {
+					complete += `${word} `;
+				}
+
+				if (complete === ' ') {
+					el.push(html`<br />`);
+				}
 			}
-			return el;
+
+			el.push(complete);
+
+			complete = '';
+		}
+
+		return el.map((wordOrHtmlTemplate) => {
+			if (typeof wordOrHtmlTemplate === 'string') {
+				return html`<span>${wordOrHtmlTemplate}</span>`;
+			}
+
+			return wordOrHtmlTemplate;
 		});
 	}
 }

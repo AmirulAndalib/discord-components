@@ -1,12 +1,15 @@
 import { consume } from '@lit/context';
 import { css, html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { messagesLightTheme } from '../discord-messages/DiscordMessages.js';
 import type { LightTheme } from '../../types.js';
+import { messagesLightTheme } from '../discord-messages/DiscordMessages.js';
 
 @customElement('discord-thread')
 export class DiscordThread extends LitElement implements LightTheme {
-	public static override styles = css`
+	/**
+	 * @internal
+	 */
+	public static override readonly styles = css`
 		:host {
 			background-color: #2f3136;
 			border-radius: 4px;

@@ -3,438 +3,494 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [4.0.0-alpha.6](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.5...v4.0.0-alpha.6) (2024-02-03)
-
-**Note:** Version bump only for package @skyra/discord-components-react
-
-# [4.0.0-alpha.5](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.4...v4.0.0-alpha.5) (2024-02-03)
+# [4.0.0-alpha.38](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.37...v4.0.0-alpha.38) (2025-01-04)
 
 ### Bug Fixes
 
-* **react:** add `use client;` header to react output for NextJS ([bf8f421](https://github.com/skyra-project/discord-components/commit/bf8f421b03cc38a1104d294379f94c901bb3abbd))
-* **react:** bump transitive dependencies ([74c0224](https://github.com/skyra-project/discord-components/commit/74c0224c5e08c5cba9e1936b7923ca9c2b8069ba))
+* **deps:** update all non-major dependencies ([#519](https://github.com/skyra-project/discord-components/issues/519)) ([32cb659](https://github.com/skyra-project/discord-components/commit/32cb6594cd1275d62ecc0bd0705ac21212a05b28)) (@renovate[bot])
 
-# [4.0.0-alpha.4](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.3...v4.0.0-alpha.4) (2024-01-28)
-
-**Note:** Version bump only for package @skyra/discord-components-react
-
-# [4.0.0-alpha.3](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.2...v4.0.0-alpha.3) (2024-01-24)
+# [4.0.0-alpha.37](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.36...v4.0.0-alpha.37) (2024-12-01)
 
 ### Bug Fixes
 
-* fixed transitive dependencies ([8ffebe2](https://github.com/skyra-project/discord-components/commit/8ffebe2db78094ca9f461e62d8206bdb6318e756))
+* **deps:** update all non-major dependencies ([#505](https://github.com/skyra-project/discord-components/issues/505)) ([00e646f](https://github.com/skyra-project/discord-components/commit/00e646f61c00ce1a12d872d49c5c92e1a9695bb3)) (@renovate[bot])
+* **deps:** update all non-major dependencies ([#510](https://github.com/skyra-project/discord-components/issues/510)) ([f499bb7](https://github.com/skyra-project/discord-components/commit/f499bb714060012c9d7786c089413dc340417fd2)) (@renovate[bot])
 
-# [4.0.0-alpha.2](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.1...v4.0.0-alpha.2) (2024-01-24)
-
-### Bug Fixes
-
-* added cjs exports to react package for NextJS projects ([2278a56](https://github.com/skyra-project/discord-components/commit/2278a563d919e05f9bd21bad90a8eb39d67d5567))
-
-# [4.0.0-alpha.1](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.0...v4.0.0-alpha.1) (2024-01-23)
-
-**Note:** Version bump only for package @skyra/discord-components-react
-
-# [4.0.0-alpha.0](https://github.com/skyra-project/discord-components/compare/v3.6.1...v4.0.0-alpha.0) (2024-01-23)
-
-### Bug Fixes
-
-* **react:** use proper export mapping for ESM ([0bbfc1c](https://github.com/skyra-project/discord-components/commit/0bbfc1cd95e56b3da602aa513f3e02559a73fe01))
-
-* feat!: rewrite to lit (#367) ([8b31f45](https://github.com/skyra-project/discord-components/commit/8b31f455be0aba1f93e6ed2188a704448b624020)), closes [#367](https://github.com/skyra-project/discord-components/issues/367)
-
-### BREAKING CHANGES
-
-* This project has been rewritten from [StencilJS](https://stenciljs.com) to [Lit](https://lit.dev). See the [Upgrading to v4 document](https://github.com/skyra-project/discord-components/blob/main/packages/core/UPGRADING-TO-V4.md) for more details.
-
-Co-authored-by: TheBv <bv939@web.de>
-
-## [3.6.1](https://github.com/skyra-project/discord-components/compare/v3.6.0...v3.6.1) (2023-08-18)
-
-### Bug Fixes
-
--   **deps:** update all non-major dependencies ([#318](https://github.com/skyra-project/discord-components/issues/318)) ([2c2f2f4](https://github.com/skyra-project/discord-components/commit/2c2f2f4a9e82949c20b34950ae1854752c6a709b))
--   **deps:** update all non-major dependencies ([#352](https://github.com/skyra-project/discord-components/issues/352)) ([1674e2a](https://github.com/skyra-project/discord-components/commit/1674e2ad9275f4bea45cc4b3d60c8e9f3512ea95))
--   **react:** add types to export mapping ([bba1772](https://github.com/skyra-project/discord-components/commit/bba17727447104fcb01757afd1912c2ad630ac8b))
--   update generated react code ([1d3161b](https://github.com/skyra-project/discord-components/commit/1d3161bf6a436ed9a6c63c953189a208d29c5717))
-
-# [3.6.0](https://github.com/skyra-project/discord-components/compare/v3.5.0...v3.6.0) (2023-01-23)
-
-### Bug Fixes
-
--   update @stencil/core dependency ([df07642](https://github.com/skyra-project/discord-components/commit/df07642b48debf1ecbc05cceaeafd5cfed081c9a))
-
-# [3.5.0](https://github.com/skyra-project/discord-components/compare/v3.4.1...v3.5.0) (2022-12-27)
-
-**Note:** Version bump only for package @skyra/discord-components-react
-
-## [3.4.1](https://github.com/skyra-project/discord-components/compare/v3.4.0...v3.4.1) (2022-08-06)
-
-**Note:** Version bump only for package @skyra/discord-components-react
-
-# [3.4.0](https://github.com/skyra-project/discord-components/compare/v3.3.1...v3.4.0) (2022-05-10)
-
-**Note:** Version bump only for package @skyra/discord-components-react
-
-## [3.3.1](https://github.com/skyra-project/discord-components/compare/v3.3.0...v3.3.1) (2022-04-25)
-
-### Bug Fixes
-
--   **core:** emit `[@vite-ignore](https://github.com/vite-ignore)` comments on dynamic imports ([ba84b9e](https://github.com/skyra-project/discord-components/commit/ba84b9ec4e8fe81ec452aba4c89b7b481b00ccaa))
--   **deps:** update all non-major dependencies ([#240](https://github.com/skyra-project/discord-components/issues/240)) ([e0e22fe](https://github.com/skyra-project/discord-components/commit/e0e22fe72158f1e9f92d61a5b04c58b7bf546de5))
-
-# [3.3.0](https://github.com/skyra-project/discord-components/compare/v3.2.0...v3.3.0) (2022-04-06)
+# [4.0.0-alpha.36](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.35...v4.0.0-alpha.36) (2024-11-02)
 
 ### Features
 
--   add `discord-time` component ([#229](https://github.com/skyra-project/discord-components/issues/229)) ([cdf0810](https://github.com/skyra-project/discord-components/commit/cdf08108e9a54e11c75e050ff176a42715aceb49))
+* add polls ([#492](https://github.com/skyra-project/discord-components/issues/492)) ([61a1105](https://github.com/skyra-project/discord-components/commit/61a11055d8eb70795939d29299436af0c07c9f78)) (@eumarciel404)
 
-# [3.2.0](https://github.com/skyra-project/discord-components/compare/v3.1.1...v3.2.0) (2022-04-04)
-
-### Features
-
--   add new components to react bundle ([3055336](https://github.com/skyra-project/discord-components/commit/3055336043d0e80c106f13ca05377759383ec36a))
-
-## [3.1.1](https://github.com/skyra-project/discord-components/compare/v3.1.0...v3.1.1) (2022-03-10)
+# [4.0.0-alpha.35](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.34...v4.0.0-alpha.35) (2024-10-27)
 
 ### Bug Fixes
 
--   rebuild react code ([e1d3766](https://github.com/skyra-project/discord-components/commit/e1d3766a1179ea70d41920ccf34786b27e96b6a7))
+* **deps:** update all non-major dependencies ([bd0d80b](https://github.com/skyra-project/discord-components/commit/bd0d80b1a2fa66c7252871eeabfb134d742ab4f1)) (@renovate[bot])
+* **deps:** update all non-major dependencies ([061f9f7](https://github.com/skyra-project/discord-components/commit/061f9f74234c32f3140b10e0a3a4d4b62b6e64d9)) (@renovate[bot])
+* **deps:** update all non-major dependencies ([#480](https://github.com/skyra-project/discord-components/issues/480)) ([869647b](https://github.com/skyra-project/discord-components/commit/869647ba7662e848acc88ba1c669e64d93a3a38c)) (@renovate[bot])
 
-# [3.1.0](https://github.com/skyra-project/discord-components/compare/v3.0.1...v3.1.0) (2022-01-12)
+# [4.0.0-alpha.34](https://github.com/skyra-project/discord-components/compare/v4.0.0-alpha.33...v4.0.0-alpha.34) (2024-08-29)
 
 **Note:** Version bump only for package @skyra/discord-components-react
 
-## [3.0.1](https://github.com/skyra-project/discord-components/compare/v3.0.0...v3.0.1) (2022-01-08)
+<div align="center">
 
-### Bug Fixes
+# @skyra/discord-components-react
 
--   **react:** use createElement named import for better compatibility with Vite ([1d770da](https://github.com/skyra-project/discord-components/commit/1d770daa291ce9222428d228ed7a7f8f9fad6ee8))
+**React bindings for
+[@skyra/discord-components-core](https://github.com/skyra-project/discord-components/tree/main/packages/core)**
 
-# [3.0.0](https://github.com/skyra-project/discord-components/compare/v2.13.0...v3.0.0) (2022-01-08)
+<!-- # HEADER START # -->
 
-### Bug Fixes
+**Web components to easily build and display fake Discord messages on your
+webpages**
 
--   fixed embed description and footer disappearing when dynamically editing title ([bdec29c](https://github.com/skyra-project/discord-components/commit/bdec29c1999969a2ea0cf1198d3eb1986a80d674))
+[![License](https://img.shields.io/github/license/skyra-project/discord-components?logo=github&maxAge=3600&style=flat-square)](https://github.com/skyra-project/discord-components/blob/main/LICENSE.md)
+[![Patreon](https://img.shields.io/badge/donate-patreon-F96854.svg?logo=patreon)](https://donate.skyra.pw/patreon)
 
-### BREAKING CHANGES
+_Core Package_
 
--   `discord-embed` no longer takes the properties `footer-image` and `timestamp`, they are moved to the `discord-embed-footer` component.
--   The embed description now has to go into its own component, `discord-embed-description`
+[![npm](https://img.shields.io/npm/v/@skyra/discord-components-core?color=crimson&logo=npm&style=flat-square&label=@skyra/discord-components-core)](https://www.npmjs.com/package/@skyra/discord-components-core)
+[![npm](https://img.shields.io/npm/dt/@skyra/discord-components-core.svg?maxAge=3600&logo=npm)](https://www.npmjs.com/package/@skyra/discord-components-core)
+[![npm](https://img.shields.io/bundlephobia/min/@skyra/discord-components-core?label=minified&logo=webpack&maxAge=3600)](https://bundlephobia.com/result?p=@skyra/discord-components-core)
 
-```diff
-<discord-embed slot="embeds">
--  Custom emojis in the embed description:
-+  <discord-embed-description slot="description">Custom emojis in the embed description:</discord-embed-description>
-</discord-embed>
+_React Bindings_
+
+[![npm](https://img.shields.io/npm/v/@skyra/discord-components-react?color=crimson&logo=npm&style=flat-square&label=@skyra/discord-components-react)](https://www.npmjs.com/package/@skyra/discord-components-react)
+[![npm](https://img.shields.io/npm/dt/@skyra/discord-components-react.svg?maxAge=3600&logo=npm)](https://www.npmjs.com/package/@skyra/discord-components-react)
+[![npm](https://img.shields.io/bundlephobia/min/@skyra/discord-components-react?label=minified&logo=webpack&maxAge=3600)](https://bundlephobia.com/result?p=@skyra/discord-components-react)
+
+[![Support Server](https://discord.com/api/guilds/254360814063058944/embed.png?style=banner2)](https://join.skyra.pw)
+
+<!-- # HEADER END # -->
+
+</div>
+
+---
+
+**_Table of Contents_**
+
+<!-- # TOC START # -->
+
+- [@skyra/discord-components-react](#skyradiscord-components-react)
+  - [Description](#description)
+  - [Features](#features)
+  - [Installation](#installation)
+  - [Usage](#usage)
+    - [Important](#important)
+    - [Using the Discord font](#using-the-discord-font)
+    - [Vite](#vite)
+      - [Live Demo](#live-demo)
+    - [Create React App](#create-react-app)
+      - [Important Notes](#important-notes)
+    - [NextJS](#nextjs)
+      - [Live Demo Pages Directory](#live-demo-pages-directory)
+      - [Live Demo App Directory](#live-demo-app-directory)
+      - [Known limitations](#known-limitations)
+    - [Docusaurus](#docusaurus)
+      - [Live Demo](#live-demo-1)
+  - [Notes](#notes)
+    - [TypeScript module augments](#typescript-module-augments)
+    - [Avatar shortcuts](#avatar-shortcuts)
+    - [Profile shortcuts](#profile-shortcuts)
+    - [Theming](#theming)
+    - [Components notes](#components-notes)
+      - [DiscordMessages component](#discordmessages-component)
+      - [DiscordMention component](#discordmention-component)
+      - [DiscordEmbed component](#discordembed-component)
+      - [EmbedFields component](#embedfields-component)
+      - [EmbedField component](#embedfield-component)
+  - [Screenshots](#screenshots)
+    - [Dark Mode](#dark-mode)
+    - [Light Mode](#light-mode)
+  - [Contributors](#contributors)
+
+<!-- # TOC END # -->
+
+<!-- # DESCRIPTION START # -->
+
+## Description
+
+Discord message components to easily build and display fake Discord messages on
+your webpage.
+
+**This is an adaptation of [wc-discord-message] from [Danktuary]**
+
+<!-- # DESCRIPTION END # -->
+
+<!-- # FEATURES START # -->
+
+## Features
+
+- Design modelled after [Discord](https://discord.com/) itself
+- Comfy and compact mode support
+- Dark and light themes support
+- Set the message author's username, avatar (use defaults or provide your own),
+  role color, and "bot" tag status
+- Display fake user, role, and channel mentions
+- Complete embed support
+- Uses [Lit Element][lit] to support all browsers and environments
+- Simple syntax!
+
+<!-- # FEATURES END # -->
+
+## Installation
+
+```bash
+yarn add @skyra/discord-components-core @skyra/discord-components-react
+# or npm install @skyra/discord-components-core @skyra/discord-components-react
 ```
 
--   The embed footer now has to go into its own component, `discord-embed-footer`
+<!-- # REACT_USAGE START # -->
 
-```diff
-- <discord-embed slot="embeds" footer-image="/static/sapphire.png" timestamp="03/20/2021">
-+ <discord-embed slot="embeds">
-{ /* other embed components */ }
--  <span slot="footer">Open source libraries to aid in the creation of Discord bots</span>
-+  <discord-embed-footer slot="footer" footer-image="/static/sapphire.png" timestamp="03/20/2021">
-+    Open source libraries to aid in the creation of Discord bots
-+  </discord-embed-footer>
-</discord-embed>
+## Usage
+
+> [!IMPORTANT]
+>
+> For further examples on how to use components, please refer to the Stackblitz
+> examples linked below. Choose the framework you are using and click on the
+> "Open in Stackblitz" button to see the code and how it renders in the browser.
+
+### Important
+
+React is currently the only library among the "big" libraries for frontend
+development that does not fully support custom elements / webcomponents yet (see
+[this React documentation page for more info](https://react.dev/reference/react-dom/components#custom-html-elements)).
+For this reason we ship the package `@skyra/discord-components-react`.
+
+We sincerely hope that this situation will improve in the future, but no one
+knows what their plans are.
+
+### Using the Discord font
+
+This library can use the Discord font if you load it into your project. You can
+do so by including the CSS below:
+
+```css
+@font-face {
+  font-family: 'Whitney';
+  src: url('https://cdn.skyra.pw/whitney-font/v2/Book.woff') format('woff');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Whitney';
+  src: url('https://cdn.skyra.pw/whitney-font/v2/Medium.woff') format('woff');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Whitney';
+  src: url('https://cdn.skyra.pw/whitney-font/v2/Semibold.woff') format('woff');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'Whitney';
+  src: url('https://cdn.skyra.pw/whitney-font/v2/Bold.woff') format('woff');
+  font-weight: 700;
+}
 ```
 
-# [2.13.0](https://github.com/skyra-project/discord-components/compare/v2.12.1...v2.13.0) (2021-12-22)
+### Vite
 
-**Note:** Version bump only for package @skyra/discord-components-react
+#### Live Demo
 
-## [2.12.1](https://github.com/skyra-project/discord-components/compare/v2.12.0...v2.12.1) (2021-12-06)
+[![Open in Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/react-vite-ts)
 
-**Note:** Version bump only for package @skyra/discord-components-react
+### Create React App
 
-# [2.12.0](https://github.com/skyra-project/discord-components/compare/v2.11.6...v2.12.0) (2021-11-13)
+#### Important Notes
 
-### Features
+Create React App is no longer the recommended way to start with a React app as
+per React's own documentation. We very strongly recommend using Vite instead.
 
--   Add `discord-custom-emoji` component & custom emojis in embed titles ([#168](https://github.com/skyra-project/discord-components/issues/168)) ([61a808e](https://github.com/skyra-project/discord-components/commit/61a808e46f16d3ce9c7ea888e208cd1fcbe30e75)), closes [#163](https://github.com/skyra-project/discord-components/issues/163)
+### NextJS
 
-## [2.11.6](https://github.com/skyra-project/discord-components/compare/v2.11.5...v2.11.6) (2021-11-08)
+#### Live Demo Pages Directory
 
-### Bug Fixes
+[![Open in Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/nextjs-ts)
 
--   **react:** fix ESM loading ([8a43f53](https://github.com/skyra-project/discord-components/commit/8a43f5367b48d086bdd46c52d393547bc6209170))
+#### Live Demo App Directory
 
-## [2.11.5](https://github.com/skyra-project/discord-components/compare/v2.11.4...v2.11.5) (2021-11-08)
+[![Open in Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/nextjs-app-directory-ts)
 
-### Bug Fixes
+#### Known limitations
 
--   **react:** only output ESM bundle ([cf9da04](https://github.com/skyra-project/discord-components/commit/cf9da04318fc5013f8637f01bd4c733b617ad074))
+1. All the React components will only render on the client, they are bundled
+   with the `'use client';` header that NextJS expects for CSR only components.
+   This is because there is currently no good way to render webcomponents on the
+   server. When
+   [@lit-labs/nextjs](https://www.npmjs.com/package/@lit-labs/nextjs) adds
+   [support for the app directory](https://github.com/lit/lit/issues/3657) we
+   can revisit this limitation.
 
-## [2.11.4](https://github.com/skyra-project/discord-components/compare/v2.11.3...v2.11.4) (2021-11-08)
+2. When using the app directory we are not able to get profiles working. We are
+   open to suggestions on how to fix this, ideally through a pull request to
+   [https://github.com/skyra-project/discord-components-implementations/tree/main/templates/nextjs-ts].
 
-### Bug Fixes
+### Docusaurus
 
--   **docs:** update nextjs codesandbox link ([4d6382f](https://github.com/skyra-project/discord-components/commit/4d6382fe3538f85cd60ea8aa28e570023b536c98))
+#### Live Demo
 
-## [2.11.3](https://github.com/skyra-project/discord-components/compare/v2.11.3-alpha.3...v2.11.3) (2021-11-08)
+[![Open in Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/react-docusaurus-ts)
+
+<!-- # REACT_USAGE END # -->
+
+<!-- # REACT_NOTES START # -->
+
+## Notes
+
+### TypeScript module augments
+
+This library uses a custom object on the browser `window` for configuration.
+Under normal circumstances by simply importing the package (with
+`import @skyra/discord-components-react`) the module augmentations should also
+be loaded. If for whatever reason this does not happen, then you can define them
+manually yourself. You can do so with the following code snippet:
+
+```ts
+import type { DiscordMessageOptions } from '@skyra/discord-components-react';
+
+declare global {
+  // eslint-disable-next-line no-var
+  var $discordMessage: DiscordMessageOptions | undefined;
+}
+```
+
+### Avatar shortcuts
+
+The current avatar shortcut strings available are "blue" (default), "gray",
+"green", "orange", and "red". These shortcuts map to the following image links:
+
+```json
+{
+  "blue": "https://cdn.discordapp.com/attachments/654503812593090602/665721745466195978/blue.png",
+  "gray": "https://cdn.discordapp.com/attachments/654503812593090602/665721746569166849/gray.png",
+  "green": "https://cdn.discordapp.com/attachments/654503812593090602/665721748431306753/green.png",
+  "orange": "https://cdn.discordapp.com/attachments/654503812593090602/665721750201434138/orange.png",
+  "red": "https://cdn.discordapp.com/attachments/654503812593090602/665721752277483540/red.png"
+}
+```
+
+If you want to add to or override the shortcuts, you can set them via
+`globalThis.$discordMessage.avatars` or by using the `setConfig` function
+(`import { setConfig } from '@skyra/discord-components-react'`).
+
+```ts
+globalThis.$discordMessage = {
+  avatars: {
+    default: 'blue',
+    skyra: 'https://github.com/NM-EEA-Y.png',
+    djs: require('./assets/discord-avatar-djs.png') // You can use require syntax as well
+  }
+};
+```
 
-**Note:** Version bump only for package @skyra/discord-components-react
+```ts
+import { setConfig } from '@skyra/discord-components-react';
 
-## [2.11.3-alpha.3](https://github.com/skyra-project/discord-components/compare/v2.11.3-alpha.2...v2.11.3-alpha.3) (2021-11-08)
+setConfig({
+  avatars: {
+    default: 'blue',
+    skyra: 'https://github.com/NM-EEA-Y.png',
+    djs: require('./assets/discord-avatar-djs.png') // You can use require syntax as well
+  }
+});
+```
+
+### Profile shortcuts
+
+Sometimes you'll want to use the same message data across multiple messages. You
+can do so by providing an object of profiles in
+`globalThis.$discordMessage.profiles` or by using the `setConfig` function
+(`import { setConfig } from '@skyra/discord-components-react'`).
+
+```ts
+globalThis.$discordMessage = {
+  profiles: {
+    skyra: {
+      author: 'Skyra',
+      avatar: 'https://github.com/NM-EEA-Y.png',
+      bot: true,
+      verified: true,
+      roleColor: '#1e88e5'
+    },
+    favna: {
+      author: 'Favna',
+      avatar: 'https://github.com/favna.png',
+      roleColor: '#ff0000'
+    }
+  }
+};
+```
+
+```ts
+import { setConfig } from '@skyra/discord-components-react';
+
+setConfig({
+  profiles: {
+    skyra: {
+      author: 'Skyra',
+      avatar: 'https://github.com/NM-EEA-Y.png',
+      bot: true,
+      verified: true,
+      roleColor: '#1e88e5'
+    },
+    favna: {
+      author: 'Favna',
+      avatar: 'https://github.com/favna.png',
+      roleColor: '#ff0000'
+    }
+  }
+});
+```
+
+And then in your React code:
+
+```tsx
+<DiscordMessages>
+  <DiscordMessage profile="skyra">
+    Welcome to our server, <mention>Favna</mention>!
+  </DiscordMessage>
+  <DiscordMessage profile="favna">Hey, glad to be here!</DiscordMessage>
+</DiscordMessages>
+```
+
+### Theming
+
+Each of the components accepts the standard HTML properties for passing styling,
+such as `className` for passing CSS classes (JSS / CSS / SCSS etc.) or `style`
+to pass inline style.
+
+You can also pass your own custom HTML tags, for example set a `data-qa` to be
+able to navigate to the component in your unit tests / end-to-end tests
+
+### Components notes
+
+Below are notes for a few certain components. If you want to see what props each
+component has, check their readme.md file in [the respective folder].
+
+#### DiscordMessages component
+
+This is a wrapper for any child `<DiscordMessage>` component. It must be used in
+order for messages to display properly.
 
-### Bug Fixes
+#### DiscordMention component
 
--   **react:** add dependency on tslib ([cc0b85e](https://github.com/skyra-project/discord-components/commit/cc0b85e23434611302bc1494aa2a76273912f6d1))
+If the default slot is left empty, the mention will be rendered as `'User'`,
+`'Role'`, or `'channel`', depending on the `type` prop given.
 
-## [2.11.3-alpha.2](https://github.com/skyra-project/discord-components/compare/v2.11.3-alpha.1...v2.11.3-alpha.2) (2021-11-08)
+#### DiscordEmbed component
 
-### Bug Fixes
+An embed that can be attached to the end of your messages. The default slot is
+used for the embed's description. The `footer` slot is used for the footer text.
 
--   **react:** no longer use esbuild for bundling ([d03ed4d](https://github.com/skyra-project/discord-components/commit/d03ed4d170493380d724d24268b195c1f4e4d71d))
+To ensure the embed gets displayed correctly inside your message, be sure to
+give it the proper `slot` attribute.
 
-## [2.11.3-alpha.1](https://github.com/skyra-project/discord-components/compare/v2.11.3-alpha.0...v2.11.3-alpha.1) (2021-11-08)
+```tsx
+<DiscordMessage>
+  Hi, I'm part of the normal message content.
+  <DiscordEmbed slot="embeds" color="#0099ff">
+    Hi, I'm part of the embed message content.
+  </DiscordEmbed>
+</DiscordMessage>
+```
 
-### Bug Fixes
+#### EmbedFields component
 
--   debump required nodejs engine to 14.0.0 ([310f9bc](https://github.com/skyra-project/discord-components/commit/310f9bc6cdcafe6fd0d7267ffff70539b981b4be))
+A wrapper for any child `<DiscordEmbedField>` components. Must be used in order
+for fields to display properly. To ensure the embed fields gets displayed
+correctly inside your embed, be sure to give it the proper `slot` attribute.
 
-## [2.11.3-alpha.0](https://github.com/skyra-project/discord-components/compare/v2.11.2...v2.11.3-alpha.0) (2021-11-08)
+```tsx
+<DiscordMessage>
+  <DiscordEmbed slot="embeds">
+    Hi, I'm part of the embed message content.
+    <DiscordEmbedFields slot="fields">
+      <!-- Embed fields go here -->
+    </DiscordEmbedFields>
+  </DiscordEmbed>
+</DiscordMessage>
+```
 
-**Note:** Version bump only for package @skyra/discord-components-react
+#### EmbedField component
 
-## [2.11.2](https://github.com/skyra-project/discord-components/compare/v2.11.1...v2.11.2) (2021-10-03)
+At least 2 consecutive fields need to be marked as inline in order for them to
+actually display next to each other. The maximum amount of inline fields is 3,
+and drops to 2 if an embed thumbnail is used.
 
-### Bug Fixes
+```tsx
+<DiscordMessage>
+  <DiscordEmbed slot="embeds">
+    Hi, I'm part of the embed message content.
+    <DiscordEmbedFields slot="fields">
+      <DiscordEmbedField fieldTitle="Inline field" inline>
+        Field content.
+      </DiscordEmbedField>
+      <DiscordEmbedField fieldTitle="Inline field" inline>
+        Field content.
+      </DiscordEmbedField>
+    </DiscordEmbedFields>
+  </DiscordEmbed>
+</DiscordMessage>
+```
 
--   re-fix react bundle. The output file _has_ to be mjs for this to all work ([946652b](https://github.com/skyra-project/discord-components/commit/946652bb6166e1cf06c681e3fb410ef92975914b))
+<!-- # REACT_NOTES END # -->
 
-### Reverts
+<!-- # SCREENSHOTS START # -->
 
--   Revert "fix(react): fixed output targets" ([129f14f](https://github.com/skyra-project/discord-components/commit/129f14f8aa2f335a7b37f2d2f068ea87623fce49))
+## Screenshots
 
-## [2.11.1](https://github.com/skyra-project/discord-components/compare/v2.11.0...v2.11.1) (2021-10-03)
+### Dark Mode
 
-### Bug Fixes
+**_A normal conversation_**
 
--   **react:** fixed output targets ([ba9faf1](https://github.com/skyra-project/discord-components/commit/ba9faf1ba0c04e89eba3e15341879cbc7dd65369))
+![](https://raw.githubusercontent.com/skyra-project/discord-components/main/assets/dark_mode/normal_conversation.png)
 
-# [2.11.0](https://github.com/skyra-project/discord-components/compare/v2.10.1-alpha.0...v2.11.0) (2021-10-02)
+**_Compact mode_**
 
-### Features
+![](https://raw.githubusercontent.com/skyra-project/discord-components/main/assets/dark_mode/compact_mode.png)
 
--   Thread Accessories ([#150](https://github.com/skyra-project/discord-components/issues/150)) ([232f05d](https://github.com/skyra-project/discord-components/commit/232f05d915fef41486150e2db43589e9fc11c742))
+**_With an embed_**
 
-## [2.10.1-alpha.0](https://github.com/skyra-project/discord-components/compare/v2.10.0...v2.10.1-alpha.0) (2021-09-21)
+![](https://raw.githubusercontent.com/skyra-project/discord-components/main/assets/dark_mode/with_embed.png)
 
-### Bug Fixes
+### Light Mode
 
--   output react bundle as `.js` to fix a Webpack issue, not loading named imports of `.mjs` files ([bc166f6](https://github.com/skyra-project/discord-components/commit/bc166f6c80b1b0b491144c179bf1a1cc30b6d1b5))
+**_A normal conversation_**
 
-# [2.10.0](https://github.com/skyra-project/discord-components/compare/v2.9.1...v2.10.0) (2021-09-12)
+![](https://raw.githubusercontent.com/skyra-project/discord-components/main/assets/light_mode/normal_conversation.png)
 
-### Features
+**_Compact mode_**
 
--   add `discord-tenor-video` component ([#127](https://github.com/skyra-project/discord-components/issues/127)) ([c90dde0](https://github.com/skyra-project/discord-components/commit/c90dde02c23b8c9d25c676249518c60daeaf5d58))
+![](https://raw.githubusercontent.com/skyra-project/discord-components/main/assets/light_mode/compact_mode.png)
 
-## [2.9.1](https://github.com/skyra-project/discord-components/compare/v2.9.1-alpha.0...v2.9.1) (2021-09-12)
+**_With an embed_**
 
-**Note:** Version bump only for package @skyra/discord-components-react
+![](https://raw.githubusercontent.com/skyra-project/discord-components/main/assets/light_mode/with_embed.png)
 
-## [2.9.1-alpha.0](https://github.com/skyra-project/discord-components/compare/v2.9.0...v2.9.1-alpha.0) (2021-09-10)
+<!-- # SCREENSHOTS END # -->
 
-**Note:** Version bump only for package @skyra/discord-components-react
+<!-- # CONTRIBUTING START # -->
 
-# [2.9.0](https://github.com/skyra-project/discord-components/compare/v2.8.1...v2.9.0) (2021-09-05)
+## Contributors
 
-**Note:** Version bump only for package @skyra/discord-components-react
+Please make sure to read the [Contributing Guide][contributing] before making a
+pull request.
 
-## [2.8.1](https://github.com/skyra-project/discord-components/compare/v2.8.0...v2.8.1) (2021-08-18)
+Thank you to all the people who already contributed to Discord Components!
 
-**Note:** Version bump only for package @skyra/discord-components-react
+<a href="https://github.com/skyra-project/discord-components/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=skyra-project/discord-components" />
+</a>
 
-# [2.8.0](https://github.com/skyra-project/discord-components/compare/v2.7.1...v2.8.0) (2021-08-18)
+<!-- # CONTRIBUTING END # -->
 
-### Features
-
--   add component buttons ([#110](https://github.com/skyra-project/discord-components/issues/110)) ([50f78c5](https://github.com/skyra-project/discord-components/commit/50f78c5643277164e791261f8a8af76a8d893015))
-
-## [2.7.1](https://github.com/skyra-project/discord-components/compare/v2.7.0...v2.7.1) (2021-08-07)
-
-### Bug Fixes
-
--   **react:** minify build output ([932aaf8](https://github.com/skyra-project/discord-components/commit/932aaf875afb493c818487fd07f8c642e3935a02))
-
-# [2.7.0](https://github.com/skyra-project/discord-components/compare/v2.6.0...v2.7.0) (2021-08-07)
-
-### Features
-
--   add system messages ([#105](https://github.com/skyra-project/discord-components/issues/105)) ([53440f4](https://github.com/skyra-project/discord-components/commit/53440f44cbe30d7458cc9e38f30c7636483b4a7a))
-
-# [2.6.0](https://github.com/skyra-project/discord-components/compare/v2.5.0...v2.6.0) (2021-08-05)
-
-### Features
-
--   add replies (+ style changes) ([#103](https://github.com/skyra-project/discord-components/issues/103)) ([065e452](https://github.com/skyra-project/discord-components/commit/065e452f9d0386dfd1b426793aca4c7f07c9c0ae))
-
-# [2.5.0](https://github.com/skyra-project/discord-components/compare/v2.4.0...v2.5.0) (2021-08-04)
-
-**Note:** Version bump only for package @skyra/discord-components-react
-
-# [2.4.0](https://github.com/skyra-project/discord-components/compare/v2.3.0...v2.4.0) (2021-07-25)
-
-**Note:** Version bump only for package @skyra/discord-components-react
-
-# [2.3.0](https://github.com/skyra-project/discord-components/compare/v2.2.0...v2.3.0) (2021-07-25)
-
-### Features
-
--   add reactions ([#96](https://github.com/skyra-project/discord-components/issues/96)) ([3bb19a6](https://github.com/skyra-project/discord-components/commit/3bb19a69912b9666f922c36eabe6fb959b4fc495))
-
-# [2.2.0](https://github.com/skyra-project/discord-components/compare/v2.1.1...v2.2.0) (2021-07-22)
-
-### Features
-
--   add invite and attachments container components ([#94](https://github.com/skyra-project/discord-components/issues/94)) ([3b782a0](https://github.com/skyra-project/discord-components/commit/3b782a0147a46ce8779bd7387786a07fdc94f5ac))
-
-## [2.1.1](https://github.com/skyra-project/discord-components/compare/v2.1.0...v2.1.1) (2021-07-10)
-
-### Bug Fixes
-
--   **readme:** update urls and add nextJS demo ([551f9e7](https://github.com/skyra-project/discord-components/commit/551f9e763a48b0854450054404476e6d641a77d3))
-
-# [2.1.0](https://github.com/skyra-project/discord-components/compare/v2.0.9...v2.1.0) (2021-06-26)
-
-**Note:** Version bump only for package @skyra/discord-components-react
-
-## [2.0.9](https://github.com/skyra-project/discord-components/compare/v2.0.8...v2.0.9) (2021-06-21)
-
-**Note:** Version bump only for package @skyra/discord-components-react
-
-## [2.0.8](https://github.com/skyra-project/discord-components/compare/v2.0.7...v2.0.8) (2021-06-21)
-
-### Bug Fixes
-
--   **docs:** remove default font from ToC ([82a1281](https://github.com/skyra-project/discord-components/commit/82a1281e84c51287ad01282d399c1be530d8ab2d))
-
-## [2.0.6](https://github.com/skyra-project/discord-components/compare/v2.0.5...v2.0.6) (2021-05-19)
-
-### Bug Fixes
-
--   specify sideEffects and fix `es2015` and `es2017` file paths ([b759b3c](https://github.com/skyra-project/discord-components/commit/b759b3c4ca9e505b49592d4152f1b5ada4876cc5))
-
-## [2.0.5](https://github.com/skyra-project/discord-components/compare/v2.0.4...v2.0.5) (2021-05-15)
-
-**Note:** Version bump only for package @skyra/discord-components-react
-
-## [2.0.4](https://github.com/skyra-project/discord-components/compare/v2.0.3...v2.0.4) (2021-05-15)
-
-### Bug Fixes
-
--   change links from discord-message-components to discord-components ([5a8e1e1](https://github.com/skyra-project/discord-components/commit/5a8e1e1e0b3a34020a91f0dae9464141195d8fab))
-
-## [2.0.3](https://github.com/skyra-project/discord-components/compare/v2.0.3-alpha.3...v2.0.3) (2021-05-15)
-
-**Note:** Version bump only for package @skyra/discord-components-react
-
-## [2.0.3-alpha.3](https://github.com/skyra-project/discord-components/compare/v2.0.3-alpha.2...v2.0.3-alpha.3) (2021-05-15)
-
-**Note:** Version bump only for package @skyra/discord-components-react
-
-## [2.0.3-alpha.2](https://github.com/skyra-project/discord-components/compare/v2.0.3-alpha.1...v2.0.3-alpha.2) (2021-05-15)
-
-**Note:** Version bump only for package @skyra/discord-components-react
-
-## [2.0.3-alpha.1](https://github.com/skyra-project/discord-components/compare/v2.0.3-alpha.0...v2.0.3-alpha.1) (2021-05-15)
-
-### Bug Fixes
-
--   fixed package bundling ([11d2627](https://github.com/skyra-project/discord-components/commit/11d2627bad707a1997e286a02b3004035dfdb306))
-
-### Features
-
--   use whitney font as default font ([d7c9267](https://github.com/skyra-project/discord-components/commit/d7c9267a7680df5a3b8c7dbab5e14f673ada162b))
-
-## [2.0.3-alpha.0](https://github.com/skyra-project/discord-components/compare/v2.0.2...v2.0.3-alpha.0) (2021-03-20)
-
-### Bug Fixes
-
--   **react:** move core from peer to regular dependencies ([8d1e3ff](https://github.com/skyra-project/discord-components/commit/8d1e3ff85a519b27f5590d9f01e98111de7695ae))
--   fixed readmes and such ([bdb8846](https://github.com/skyra-project/discord-components/commit/bdb8846db2ded36567ef624ddddedf95f59e549b))
-
-## [2.0.2](https://github.com/skyra-project/discord-components/compare/v2.0.1...v2.0.2) (2020-10-26)
-
-### Bug Fixes
-
--   **react:** allow peer dependency of React 17 and Core 2 ([ae5fb27](https://github.com/skyra-project/discord-components/commit/ae5fb278643f68714bc646697e97269686517eb3))
-
-## [2.0.1](https://github.com/skyra-project/discord-components/compare/v2.0.0...v2.0.1) (2020-10-07)
-
-**Note:** Version bump only for package @skyra/discord-components-react
-
-# [2.0.0](https://github.com/skyra-project/discord-components/compare/v1.3.0...v2.0.0) (2020-09-05)
-
-### Features
-
--   bumped stencil-core to v2 ([59ef71e](https://github.com/skyra-project/discord-components/commit/59ef71e48ac786edb35b7c52523206104796a9f0)), closes [/github.com/ionic-team/stencil/blob/master/CHANGELOG.md#-200-2020-08-31](https://github.com//github.com/ionic-team/stencil/blob/master/CHANGELOG.md/issues/-200-2020-08-31) [#12](https://github.com/skyra-project/discord-components/issues/12)
-
-### BREAKING CHANGES
-
--   IE11, Edge 16-18, Safari 10 and ES5 builds and support for them is fully removed
-    now. Also some files are exported under different names in core. For a full list see
-
-# [1.3.0](https://github.com/skyra-project/discord-components/compare/v1.2.2...v1.3.0) (2020-07-26)
-
-### Features
-
--   rename master branch to main ([0bc3666](https://github.com/skyra-project/discord-components/commit/0bc36663a83ab55df4ebb96fc9c69d6809008934))
-
-## [1.2.2](https://github.com/skyra-project/discord-components/compare/v1.2.1...v1.2.2) (2020-07-13)
-
-**Note:** Version bump only for package @skyra/discord-components-react
-
-## [1.2.1](https://github.com/skyra-project/discord-components/compare/v1.2.0...v1.2.1) (2020-07-08)
-
-**Note:** Version bump only for package @skyra/discord-components-react
-
-# [1.2.0](https://github.com/skyra-project/discord-components/compare/v1.1.4...v1.2.0) (2020-07-07)
-
-**Note:** Version bump only for package @skyra/discord-components-react
-
-## [1.1.4](https://github.com/skyra-project/discord-components/compare/v1.1.3...v1.1.4) (2020-07-06)
-
-**Note:** Version bump only for package @skyra/discord-components-react
-
-## [1.1.3](https://github.com/skyra-project/discord-components/compare/v1.1.2...v1.1.3) (2020-07-06)
-
-**Note:** Version bump only for package @skyra/discord-components-react
-
-## [1.1.2](https://github.com/skyra-project/discord-components/compare/v1.1.1...v1.1.2) (2020-06-27)
-
-### Bug Fixes
-
--   bump package, regenerate react output ([07af3cc](https://github.com/skyra-project/discord-components/commit/07af3cc4e3ab3df728c4ed91341af2e7a5db3239))
-
-## [1.1.1](https://github.com/skyra-project/discord-components/compare/v1.1.0...v1.1.1) (2020-06-06)
-
-### Bug Fixes
-
--   bump packages, fixing some stenciljs bugs ([2ac34a9](https://github.com/skyra-project/discord-components/commit/2ac34a9abca911e1abffc9671cb75cb24357335a))
-
-# [1.1.0](https://github.com/skyra-project/discord-components/compare/v1.0.1...v1.1.0) (2020-05-19)
-
-**Note:** Version bump only for package @skyra/discord-components-react
-
-## [1.0.1](https://github.com/skyra-project/discord-components/compare/v1.0.0...v1.0.1) (2020-05-10)
-
-**Note:** Version bump only for package @skyra/discord-components-react
-
-# [1.0.0](https://github.com/skyra-project/discord-components/compare/v1.0.0-alpha.1...v1.0.0) (2020-05-10)
-
-**Note:** Version bump only for package @skyra/discord-components-react
-
-# [1.0.0-alpha.1](https://github.com/skyra-project/discord-components/compare/v1.0.0-alpha.0...v1.0.0-alpha.1) (2020-05-10)
-
-**Note:** Version bump only for package @skyra/discord-components-react
-
-# 1.0.0-alpha.0 (2020-05-10)
-
-### Features
-
--   create packages ([1ad5856](https://github.com/skyra-project/discord-components/commit/1ad58560916d3988e8dffc58ad97a52828ff5d35))
+[contributing]: ../../.github/CONTRIBUTING.md
+[wc-discord-message]: https://github.com/Danktuary/wc-discord-message
+[danktuary]: https://github.com/Danktuary
+[the respective folder]:
+  (https://github.com/skyra-project/discord-components/blob/main/packages/core/src/components/)

@@ -36,34 +36,53 @@ _React Bindings_
 
 - [@skyra/discord-components-core](#skyradiscord-components-core)
   - [Description](#description)
+    - [Upgrading guide](#upgrading-guide)
   - [Features](#features)
   - [Installation](#installation)
   - [Usage](#usage)
     - [Using the Discord font](#using-the-discord-font)
     - [Integrations](#integrations)
       - [Angular](#angular)
+        - [Important Notes](#important-notes)
         - [Live Demo](#live-demo)
-        - [Including the Custom Element Schema](#including-the-custom-element-schema)
-        - [Including the web-components](#including-the-web-components)
       - [React](#react)
-        - [Important](#important)
+        - [Important Notes](#important-notes-1)
         - [Vite](#vite)
           - [Live Demo](#live-demo-1)
         - [Create React App](#create-react-app)
-          - [Important Notes](#important-notes)
-    - [NextJS](#nextjs)
-      - [Live Demo Pages Directory](#live-demo-pages-directory)
-      - [Live Demo App Directory](#live-demo-app-directory)
-      - [Known limitations](#known-limitations)
+          - [Important Notes](#important-notes-2)
+        - [NextJS](#nextjs)
+          - [Live Demo Pages Directory](#live-demo-pages-directory)
+          - [Live Demo App Directory](#live-demo-app-directory)
+          - [Known limitations](#known-limitations)
+        - [Docusaurus](#docusaurus)
+          - [Live Demo](#live-demo-2)
       - [Vue](#vue)
         - [Vite](#vite-1)
-          - [Live Demo](#live-demo-2)
+          - [Live Demo](#live-demo-3)
           - [Configuration](#configuration)
         - [Nuxt](#nuxt)
-          - [Live Demo](#live-demo-3)
+          - [Live Demo](#live-demo-4)
+          - [Configuration](#configuration-1)
+      - [Astro](#astro)
+        - [Important Notes](#important-notes-3)
+        - [Live Demo](#live-demo-5)
+      - [Solid](#solid)
+        - [Live Demo](#live-demo-6)
+      - [Svelte](#svelte)
+        - [Vite](#vite-2)
+          - [Live Demo](#live-demo-7)
+        - [Sveltekit](#sveltekit)
+          - [Live Demo](#live-demo-8)
+      - [Qwik](#qwik)
+        - [Live Demo](#live-demo-9)
+      - [Preact](#preact)
+        - [Live Demo](#live-demo-10)
+      - [HTMX](#htmx)
+        - [Live Demo](#live-demo-11)
       - [No Framework](#no-framework)
-        - [Important Notes](#important-notes-1)
-        - [Live Demo](#live-demo-4)
+        - [Important Notes](#important-notes-4)
+        - [Live Demo](#live-demo-12)
   - [Notes](#notes)
     - [TypeScript module augments](#typescript-module-augments)
     - [Avatar shortcuts](#avatar-shortcuts)
@@ -90,6 +109,13 @@ Discord message components to easily build and display fake Discord messages on
 your webpage.
 
 **This is an adaptation of [wc-discord-message] from [Danktuary]**
+
+### Upgrading guide
+
+The source code and documentation of this package has been updated for version
+4.x of this package. To find out how to upgrade from v3.x to v4.x, please refer
+to the
+[upgrading guide](https://discord-components.js.org/upgrading/v3x-v4x/#component-changes)
 
 <!-- # DESCRIPTION END # -->
 
@@ -142,6 +168,12 @@ conversation:
 </discord-messages>
 ```
 
+> [!IMPORTANT]
+>
+> For further examples on how to use components, please refer to the Stackblitz
+> examples linked below. Choose the framework you are using and click on the
+> "Open in Stackblitz" button to see the code and how it renders in the browser.
+
 ### Using the Discord font
 
 This library can use the Discord font if you load it into your project. You can
@@ -177,58 +209,29 @@ do so by including the CSS below:
 
 #### Angular
 
-##### Live Demo
+##### Important Notes
 
-[![Edit on Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/angular)
-
-##### Including the Custom Element Schema
-
-Including the `CUSTOM_ELEMENTS_SCHEMA` in the module allows the use of the web
-components in the HTML markup without the compiler producing errors. This code
-should be added into the `AppModule` and in every other modules that use your
-custom elements. Here is an example of adding it to `AppModule`:
+You need to import the `CUSTOM_ELEMENTS_SCHEMA` from `@angular/core` and add it
+to the `schemas` array of your module or component decorator for the module or
+component using custom elements. This is to ensure that Angular knows custom
+elements are used in this module or component.
 
 ```ts
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppComponent } from './app.component';
-
-@NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserModule],
-  providers: [],
-  bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
-})
-export class AppModule {}
-```
-
-The `CUSTOM_ELEMENTS_SCHEMA` needs to be included in any module that uses custom
-elements.
-
-##### Including the web-components
-
-Once you have defined the `CUSTOM_ELEMENTS_SCHEMA` you can include the
-webcomponents in your components. Here is a simple example:
-
-```ts
-import { Component } from '@angular/core';
-
-// Import the webcomponents that will be used in this file
-import '@skyra/discord-components-core/discord-messages';
-import '@skyra/discord-components-core/discord-message';
+import { CUSTOM_ELEMENTS_SCHEMA, Component } from '@angular/core';
 
 @Component({
-  selector: 'app',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppComponent {}
 ```
 
+##### Live Demo
+
+[![Open in Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/angular)
+
 #### React
 
-##### Important
+##### Important Notes
 
 React is currently the only library among the "big" libraries for frontend
 development that does not fully support custom elements / webcomponents yet (see
@@ -242,7 +245,7 @@ knows what their plans are.
 
 ###### Live Demo
 
-[![Edit on Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/react-vite-ts)
+[![Open in Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/react-vite-ts)
 
 ##### Create React App
 
@@ -251,17 +254,17 @@ knows what their plans are.
 Create React App is no longer the recommended way to start with a React app as
 per React's own documentation. We very strongly recommend using Vite instead.
 
-### NextJS
+##### NextJS
 
-#### Live Demo Pages Directory
+###### Live Demo Pages Directory
 
-[![Edit on Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/nextjs-ts)
+[![Open in Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/nextjs-ts)
 
-#### Live Demo App Directory
+###### Live Demo App Directory
 
-[![Edit on Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/nextjs-app-directory-ts)
+[![Open in Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/nextjs-app-directory-ts)
 
-#### Known limitations
+###### Known limitations
 
 1. All the React components will only render on the client, they are bundled
    with the `'use client';` header that NextJS expects for CSR only components.
@@ -275,13 +278,19 @@ per React's own documentation. We very strongly recommend using Vite instead.
    open to suggestions on how to fix this, ideally through a pull request to
    [https://github.com/skyra-project/discord-components-implementations/tree/main/templates/nextjs-ts].
 
+##### Docusaurus
+
+###### Live Demo
+
+[![Open in Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/react-docusaurus-ts)
+
 #### Vue
 
 ##### Vite
 
 ###### Live Demo
 
-[![Edit on Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/vue-vite-ts)
+[![Open in Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/vue-vite-ts)
 
 ###### Configuration
 
@@ -292,15 +301,12 @@ components. You can do that with the following code in your `vite.config.ts`:
 import vue from '@vitejs/plugin-vue';
 import { defineConfig } from 'vite';
 
-const regex = /^discord-/;
-
 export default defineConfig({
   plugins: [
     vue({
       template: {
         compilerOptions: {
-          // Tell Vite to ignore all components defined in the @skyra/discord-components-core package.
-          isCustomElement: (tag) => regex.test(tag)
+          isCustomElement: (tag) => tag.startsWith('discord-')
         }
       }
     })
@@ -312,7 +318,75 @@ export default defineConfig({
 
 ###### Live Demo
 
-<!-- TODO: Insert Nuxt live demo -->
+[![Open in Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/nuxt3-ts)
+
+###### Configuration
+
+When using Nuxt 3 you need to setup Vite to recognise the custom components. You
+can do that with the following code in your `nuxt.config.ts`:
+
+```ts
+export default defineNuxtConfig({
+  devtools: { enabled: true },
+  vue: {
+    compilerOptions: {
+      isCustomElement: (tag) => tag.startsWith('discord-')
+    }
+  }
+});
+```
+
+#### Astro
+
+##### Important Notes
+
+Because it is possible to use different integrations in an Astro project you can
+also reference the other examples here. The live demo linked below uses the
+[Lit integration for Astro](https://docs.astro.build/en/guides/integrations-guide/lit/)
+as well as the
+[React integration for Astro](https://docs.astro.build/en/guides/integrations-guide/react/).
+
+##### Live Demo
+
+[![Open in Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/astro)
+
+#### Solid
+
+##### Live Demo
+
+[![Open in Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/solid-vite-ts)
+
+#### Svelte
+
+##### Vite
+
+###### Live Demo
+
+[![Open in Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/svelte-vite-ts)
+
+##### Sveltekit
+
+###### Live Demo
+
+[![Open in Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/sveltekit-ts)
+
+#### Qwik
+
+##### Live Demo
+
+[![Open in Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/qwik-vite-ts)
+
+#### Preact
+
+##### Live Demo
+
+[![Open in Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/preact-vite-ts)
+
+#### HTMX
+
+##### Live Demo
+
+[![Open in Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/htmx-vite-ts)
 
 #### No Framework
 
@@ -325,7 +399,7 @@ that the browser can support. The live demo below uses Vite.
 
 ##### Live Demo
 
-[![Edit on Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/no-framework-vite)
+[![Open in Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/skyra-project/discord-components-implementations/tree/main/templates/no-framework-vite)
 
 <!-- # CORE_USAGE END # -->
 
@@ -335,7 +409,7 @@ that the browser can support. The live demo below uses Vite.
 
 ### TypeScript module augments
 
-This module uses a custom object on the browser `window` for configuration.
+This library uses a custom object on the browser `window` for configuration.
 Under normal circumstances by simply importing the package (with
 `import @skyra/discord-components-core`) the module augmentations should also be
 loaded. If for whatever reason this does not happen, then you can define them
@@ -366,10 +440,11 @@ The current avatar shortcut strings available are "blue" (default), "gray",
 ```
 
 If you want to add to or override the shortcuts, you can set them via
-`window.$discordMessage.avatars`.
+`globalThis.$discordMessage.avatars` or by using the `setConfig` function
+(`import { setConfig } from '@skyra/discord-components-core'`).
 
 ```ts
-window.$discordMessage = {
+globalThis.$discordMessage = {
   avatars: {
     default: 'blue',
     skyra: 'https://github.com/NM-EEA-Y.png',
@@ -378,14 +453,27 @@ window.$discordMessage = {
 };
 ```
 
+```ts
+import { setConfig } from '@skyra/discord-components-core';
+
+setConfig({
+  avatars: {
+    default: 'blue',
+    skyra: 'https://github.com/NM-EEA-Y.png',
+    djs: require('./assets/discord-avatar-djs.png') // You can use require syntax as well
+  }
+});
+```
+
 ### Profile shortcuts
 
 Sometimes you'll want to use the same message data across multiple messages. You
 can do so by providing an object of profiles in
-`window.$discordMessage.profiles`.
+`globalThis.$discordMessage.profiles` or by using the `setConfig` function
+(`import { setConfig } from '@skyra/discord-components-core'`).
 
 ```ts
-window.$discordMessage = {
+globalThis.$discordMessage = {
   profiles: {
     skyra: {
       author: 'Skyra',
@@ -401,6 +489,27 @@ window.$discordMessage = {
     }
   }
 };
+```
+
+```ts
+import { setConfig } from '@skyra/discord-components-core';
+
+setConfig({
+  profiles: {
+    skyra: {
+      author: 'Skyra',
+      avatar: 'https://github.com/NM-EEA-Y.png',
+      bot: true,
+      verified: true,
+      roleColor: '#1e88e5'
+    },
+    favna: {
+      author: 'Favna',
+      avatar: 'https://github.com/favna.png',
+      roleColor: '#ff0000'
+    }
+  }
+});
 ```
 
 And then in your code:

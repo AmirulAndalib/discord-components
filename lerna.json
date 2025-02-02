@@ -3,19 +3,18 @@
 	"packages": ["packages/*"],
 	"npmClient": "yarn",
 	"useWorkspaces": true,
-	"version": "4.0.0-alpha.6",
+	"version": "4.0.0-alpha.38",
 	"command": {
 		"publish": {
 			"conventionalCommits": true,
-			"push": true,
-			"removePackageFields": ["devDependencies"]
+			"push": true
 		},
 		"version": {
 			"allowBranch": "main",
 			"conventionalCommits": true,
+			"changelogIncludeCommitsClientLogin": true,
 			"push": true,
 			"createRelease": "github",
-			"generateReleaseNotes": true,
 			"signGitCommit": true,
 			"signGitTag": true,
 			"signoffGitCommit": true,
